@@ -1,0 +1,32 @@
+.footer{
+    max-width: 100%;
+    
+}
+.footer_img{
+    display: block;
+   object-fit: cover;
+    width: 100%;
+    height: 100px
+    ;
+}
+
+.footer_text{
+    padding: 0 20px 
+    ;
+   display: flex;
+   justify-content: space-between;
+   background-color: #1E3A8A;
+   
+   
+}
+
+.footer_text-container{
+    margin: 0;
+}
+
+.footer_text-title{
+   
+    margin: 0;
+    font-size: 8p;
+    color: white;
+}
