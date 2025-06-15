@@ -1,17 +1,22 @@
  
-import Header from './components/Header'
-import Footer from './components/Footer'
+import Header from './components/header'
+import Footer from './components/footer'
 import Separador from "./components/Separador";
-import Landing from './components/Landing';
+import Landing from './components/landing';
 
 function App() {
   
 
   return (
     <div className='page'>
+      <div className="page-stripes">
+
+      </div>
       <Header />
-     <Separador />
+      <Separador />
       <Landing />
+      
+     
 
    <Footer />
     

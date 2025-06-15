@@ -1,0 +1,11 @@
+.slider-container {
+padding: 30px 0px;
+  display: flex;
+  justify-content: center;
+ 
+}
+
+.slider-container .slick-slider {
+  max-width: 900px;
+  width: 100%;
+}
