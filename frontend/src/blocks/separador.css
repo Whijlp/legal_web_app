@@ -1,6 +1,7 @@
 .separador{
-  
-    max-width: 100%;
+    margin: auto;
+    width: 95%;
+    max-width: 95%;
     height: 5px;
     background-color:  #1E3A8A
 
