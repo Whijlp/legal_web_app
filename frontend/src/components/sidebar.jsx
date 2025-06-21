@@ -1,4 +1,4 @@
-import logout from "../../images/logout"
+import logout from "../images/logout.png";
 function Sidebar() {
   return (
     <div className="sidebar">
