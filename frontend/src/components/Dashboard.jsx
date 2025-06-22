@@ -1,11 +1,13 @@
+import Popup from './popup/Popup';
 import Sidebar from './Sidebar';
+
 
 function Dashboard() {
   return (
     <>
     <Sidebar/>
     <div className="dashboard">
-    
+   
     </div>
     </>
   );

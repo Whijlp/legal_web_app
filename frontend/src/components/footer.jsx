@@ -17,7 +17,7 @@ function Footer() {
          
       
         </div>
-        <div clas className="footer_coteiner-text">
+        <div  className="footer_coteiner-text">
           <div className="footer_conteiner-us">
           <p className="footer-title">Soporte</p>
           <p className="footer-text">

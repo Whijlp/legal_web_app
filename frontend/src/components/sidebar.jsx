@@ -1,18 +1,34 @@
-import logout from "../images/logout.png";
+import logoutwhite from "../images/logoutwhite.png";
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 function Sidebar() {
+  const { logout, user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
   return (
     <div className="sidebar">
-      <h2>incio</h2>
-      <ul>
-        <li>Base de datos</li>
-        <li>Ingresar y modificar Registros</li>
-        <li>Tutelas asignadas</li>
-        <li>Fallos concede</li>
-        <li>incidentes</li>
-        <li>Acciones populares</li>
-
-        <button>Cerrar seseopm <img src={logout} alt="Icono de salida" /></button>
+      <h2 className="sidebar_inicio">Incio</h2>
+      <ul className="sidebar_list">
+        <li className="sidebar_list-item">Base de datos</li>
+        <li className="sidebar_list-item">Ingresar y modificar Registros</li>
+        <li className="sidebar_list-item">Tutelas asignadas</li>
+        <li className="sidebar_list-item">Fallos concede</li>
+        <li className="sidebar_list-item">incidentes</li>
+        <li className="sidebar_list-item">Acciones populares</li>
       </ul>
+      <div className="sidebar_logout">
+        <button onClick={handleLogout} className="sidebar_butto-logout">
+          Cerrar sesion
+          <img className="sidebar_logut-img" src={logoutwhite} alt="Icono de salida" />
+        </button>
+        
+      </div>
     </div>
   );
 }

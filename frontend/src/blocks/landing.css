@@ -1,15 +1,14 @@
 .landing{
-  
-    height: 100%;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     
 }
 .landingImage{
-    width: 850px;
-    height: 425px;
-    object-fit:contain;
+    width: 100%;
+   
+    object-fit:cover;
 }
 
 .lading_button-container {

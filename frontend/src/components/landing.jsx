@@ -1,4 +1,4 @@
-import Slider from "./Slider";
+import SimpleSlider from "./Slider";
 import escuelacnsc from "../images/landingButton.png";
 import observatorio from "../images/landingButtonyellow.png";
 import simo from "../images/landingButtonblue.png";
@@ -6,10 +6,10 @@ import Landingnew from './LandingNew';
 import Separador from "./Separador";
 
 
-function Landing(settings) {
+function Landing() {
   return (
     <div className="landing">
-      <Slider {...settings} />
+      <SimpleSlider />
 
       <div className="lading_button-container">
         <button className="landing_button">
