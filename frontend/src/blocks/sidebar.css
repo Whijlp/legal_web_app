@@ -10,12 +10,14 @@
 }
 
 .sidebar_list{
+ 
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
 .sidebar_list-item{
+    color: white;
     padding: 10px;
     text-align: center;
 }

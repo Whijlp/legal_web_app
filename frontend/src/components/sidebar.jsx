@@ -1,6 +1,6 @@
 import logoutwhite from "../images/logoutwhite.png";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
   const { logout, user } = useAuth();
@@ -13,21 +13,33 @@ function Sidebar() {
 
   return (
     <div className="sidebar">
-      <h2 className="sidebar_inicio">Incio</h2>
+      <h2 className="sidebar_inicio">Inicio</h2>
       <ul className="sidebar_list">
-        <li className="sidebar_list-item">Base de datos</li>
-        <li className="sidebar_list-item">Ingresar y modificar Registros</li>
-        <li className="sidebar_list-item">Tutelas asignadas</li>
-        <li className="sidebar_list-item">Fallos concede</li>
-        <li className="sidebar_list-item">incidentes</li>
-        <li className="sidebar_list-item">Acciones populares</li>
+        <li className="sidebar_list-item">
+          <Link className="sidebar_list-item" to="/dashboard/editarregistros">Base de datos</Link>
+        </li>
+        <li className="sidebar_list-item">
+          <Link className="sidebar_list-item" to="/dashboard/ingresarregistos">Ingresar y modificar Registros</Link>
+        </li>
+        <li className="sidebar_list-item">
+          <Link className="sidebar_list-item" to="/dashboard/tutelas">Tutelas asignadas</Link>
+        </li>
+        <li className="sidebar_list-item">
+          <Link className="sidebar_list-item" to="/dashboard/fallos">Fallos concede</Link>
+        </li>
+        <li className="sidebar_list-item">
+          <Link className="sidebar_list-item" to="/dashboard/incidentes">Incidentes</Link>
+        </li>
+        <li className="sidebar_list-item">
+          <Link className="sidebar_list-item" to="/dashboard/acciones">Acciones populares</Link>
+        </li>
       </ul>
+
       <div className="sidebar_logout">
         <button onClick={handleLogout} className="sidebar_butto-logout">
-          Cerrar sesion
+          Cerrar sesión
           <img className="sidebar_logut-img" src={logoutwhite} alt="Icono de salida" />
         </button>
-        
       </div>
     </div>
   );

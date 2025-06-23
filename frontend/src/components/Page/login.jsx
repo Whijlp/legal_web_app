@@ -37,10 +37,11 @@ function Login() {
       return;
     }
 
-    const loginExitoso = true; //  lógica para el backend
+    const loginExitoso = true; 
 
     if (loginExitoso) {
       setUser({ name });
+      localStorage.setItem("user", JSON.stringify({ name }));
       mostrarTooltip(`¡Bienvenido, ${name}!`, true, true);
     } else {
       mostrarTooltip("Login fallido. Verifica tus datos.", false);

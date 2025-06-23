@@ -2,11 +2,13 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import Separador from "./components/Separador";
 import Landing from "./components/landing";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/Dashboard/Dashboard";
 import Authpage from "./components/Page/Authpage";
 import { Route, Routes } from "react-router";
 import Register from "./components/Page/Register";
 import Login from "./components/Page/login";
+import IngresarRegistros from "./components/Dashboard/IngresarRegistros";
+
 
 function App() {
   return (
@@ -20,7 +22,10 @@ function App() {
           <Route index element={<Login />} />
           <Route path="register" element={<Register />} />
         </Route>
-        <Route path="/dashboard" element={<Dashboard />} />
+        
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="ingresarregistos" element={<IngresarRegistros />} />
+        </Route>
       </Routes>
 
       <Footer />
