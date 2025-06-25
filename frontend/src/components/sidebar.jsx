@@ -13,10 +13,12 @@ function Sidebar() {
 
   return (
     <div className="sidebar">
-      <h2 className="sidebar_inicio">Inicio</h2>
+       <Link className="sidebar_list-item" to="/dashboard/inicio"><h2 className="sidebar_inicio">Inicio</h2></Link>
       <ul className="sidebar_list">
         <li className="sidebar_list-item">
-          <Link className="sidebar_list-item" to="/dashboard/editarregistros">Base de datos</Link>
+        </li>
+        <li className="sidebar_list-item">
+          <Link className="sidebar_list-item" to="/dashboard/basededatos">Base de datos</Link>
         </li>
         <li className="sidebar_list-item">
           <Link className="sidebar_list-item" to="/dashboard/ingresarregistos">Ingresar y modificar Registros</Link>
@@ -31,7 +33,7 @@ function Sidebar() {
           <Link className="sidebar_list-item" to="/dashboard/incidentes">Incidentes</Link>
         </li>
         <li className="sidebar_list-item">
-          <Link className="sidebar_list-item" to="/dashboard/acciones">Acciones populares</Link>
+          <Link className="sidebar_list-item" to="/dashboard/accionesp">Acciones populares</Link>
         </li>
       </ul>
 

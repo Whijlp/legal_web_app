@@ -5,25 +5,27 @@ function IngresarRegistros() {
       <form className="registros_form">
         <div className="registros_form-group">
         <input
+        className="registros_form-item"
           type="text"
           id="nombre"
           name="nombre"
           placeholder="Buscar accionanate"
         />
-        <button className=""
+        <button className="registros_form-button"
         id="nombre_button">Buscar</button>
         </div>
         <div className="">
-               <input
+               <input className="registros_form-item"
           type="text"
           id="radicado"
           name="radicado"
           placeholder="Buescar por numero radicado"
         />
-        <button className=""
+        <button className="registros_form-button"
         id="radicado_button">Buscar</button>
         </div>
 
+         <button className="registros_form-button">Crear registros</button>
       </form>
     </div>
   );

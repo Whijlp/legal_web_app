@@ -84,7 +84,7 @@ function Register() {
 
       <p className="login_text">
         ¿Ya tienes una cuenta?{" "}
-        <Link to="/login" className="register-login-link">
+        <Link to="/auth/login" className="register-login-link">
           Inicia sesión
         </Link>
       </p>

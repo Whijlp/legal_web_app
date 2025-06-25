@@ -1,0 +1,13 @@
+.dashboard {
+ flex-grow: 1;
+  position: relative; 
+  min-width:  100%;
+  
+}
+
+.dashboard_content{
+    position: fixed;
+    top: 140px;
+    left: 600px;   
+
+}

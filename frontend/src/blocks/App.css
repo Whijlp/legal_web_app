@@ -1,8 +1,10 @@
 .page {
-width: 100%;
-min-height: 100%;
-display: block;
-font-family: "inter", sans-serif;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+
+  font-family: "inter", sans-serif;
  
 }
 
@@ -16,5 +18,12 @@ font-family: "inter", sans-serif;
    background-repeat: no-repeat;
    background-size: cover;
   background-image: url(../images/Stripe.png) ;
+  
+}
+
+.app_construccion{
+  
+  width: 600px;
+  height: 500px;
   
 }

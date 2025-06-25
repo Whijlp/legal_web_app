@@ -32,7 +32,7 @@ function Header() {
     ) : user ? (
       <span>👤 Bienvenido: {user.name}</span>
     ) : (
-      <Link to="/login" className="header_login">
+      <Link to="/auth/login" className="header_login">
         Iniciar sesión o
         Registrate
       </Link>

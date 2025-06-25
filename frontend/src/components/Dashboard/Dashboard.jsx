@@ -1,22 +1,15 @@
-import Sidebar from '../Sidebar';
-import { Outlet } from 'react-router';
-
+import Sidebar from "../Sidebar";
+import { Outlet } from "react-router";
 
 function Dashboard() {
   return (
-    <>
-    <Sidebar/>
     <div className="dashboard">
+      <Sidebar />
       <div className="dashboard_content">
-
-
         
         <Outlet />
       </div>
-
-   
     </div>
-    </>
   );
 }
 

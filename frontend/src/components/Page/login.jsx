@@ -76,7 +76,7 @@ function Login() {
           </button>
           <p className="login_text">
             ¿No tienes una cuenta?{" "}
-            <Link to="/login/register" className="login_register-link">
+            <Link to="/auth/register" className="login_register-link">
               Regístrate
             </Link>
           </p>
