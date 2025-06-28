@@ -9,7 +9,7 @@ import { useAuth } from "../contexts/AuthContext";
 function Header() {
   const { user } = useAuth();
   const location = useLocation();
-  const isLoginPage = location.pathname === "/login"
+  const isLoginPage = location.pathname === "/auth/login"
   return (
     <header className="header">
       <img src={cnsc} className="header_img-cnsc" alt="Logo cnsc" />

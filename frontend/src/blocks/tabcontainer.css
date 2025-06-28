@@ -1,7 +1,17 @@
 .tabContainer {
-    background-color: blue;
-  display: flex;
-  flex-direction: column;
+  border-color: #1E3A8A;
+  border-width: thick;  
+  margin: auto;
   width: 100%;
-  height: 100%;
-}   
+    
+
+} 
+
+.tabContainer_tabs{
+  display: flex;
+
+
+  background-color: #1E3A8A;
+  padding: 10px;
+  border-radius: 5px;
+}
