@@ -1,13 +1,12 @@
+
+import FalloInstancia from "./FalloInstancia";
+
+
 function TabFallos() {
   return (
-    <div className="tabFallos">
-      <h1>Fallos</h1>
-      <p>
-        Aquí se mostrarán los fallos Esta sección está en
-        construcción.
-      </p>
-      
-  
+    <div>
+      <FalloInstancia titulo="Fallo de 1° instancia" />
+      <FalloInstancia titulo="Fallo de 2° instancia" />
     </div>
   );
 }

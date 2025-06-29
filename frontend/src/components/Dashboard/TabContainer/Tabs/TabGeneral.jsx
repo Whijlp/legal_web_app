@@ -1,17 +1,19 @@
 function TabGeneral() {
   return (
-    <div className="Tabs">
+    <div className="tabs">
       <form className="tabs_form">
-        <button className="tabs_button">Fecha de admision</button>
+       <div className="tabs_date">
+        <input type="date" placeholder="Fecha de ingreso" />
         <input type="text" placeholder="Termino " />
-        <input type="date" placeholder="Fecha de respuesta" />
-        <div className="tabs_form-tuela">
-          <input type="text" placeholder="Nombre de accionnte" />
-          <input type="text" placeholder="Numero de Radicado" />
-          <input type="text" placeholder="Despacho " />
-          <input type="text" placeholder="Convocatoria" />
-          <input type="text" placeholder="Tema especifico" />
-          <input type="text" placeholder="Abogado" />
+        <input type="text" placeholder="Fecha de respuesta" />
+        </div>
+        <div className="tabs_form-tuela" id="tabs_form-tuela">
+          <input type="text" placeholder="Nombre de accionnte" className="tabs_inputs" />
+          <input type="text" placeholder="Numero de Radicado" className="tabs_inputs" />
+          <input type="text" placeholder="Despacho " className="tabs_inputs"/>
+          <input type="text" placeholder="Convocatoria" className="tabs_inputs"/>
+          <input type="text" placeholder="Tema especifico" className="tabs_inputs"/>
+          <input type="text" placeholder="Abogado" className="tabs_inputs"/>
         </div>
       </form>
     </div>

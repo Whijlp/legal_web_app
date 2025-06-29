@@ -26,7 +26,7 @@ function Login() {
       setTimeout(
         () => {
           setTooltipVisible(false);
-          if (redirigir) navigate("/dashboard");
+          if (redirigir) navigate("/dashboard/inicio");
         },
         exito ? 2000 : 3000
       );

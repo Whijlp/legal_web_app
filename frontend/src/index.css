@@ -14,4 +14,5 @@
 @import url(./blocks/ingresarRegistros.css);
 @import url(./blocks/dashboard.css);
 @import url(./blocks/tabcontainer.css);
-@import url(./blocks/tabs.css);
+@import url(./blocks/tabsGeneral.css);
+@import url(./blocks/fallosInstancia.css);

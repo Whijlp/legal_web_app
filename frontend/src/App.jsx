@@ -23,9 +23,9 @@ function App() {
       {/*<div className="page-stripes"></div> */}
       <Header />
       <Separador />
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/auth" element={<Authpage />}>
+        <Routes>
+         <Route path="/" element={<Landing />} />
+          <Route path="/auth" element={<Authpage />}>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
         </Route>
@@ -33,26 +33,21 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />}>
           <Route path="inicio" element={<h1>Bienvenido al Dashboard <img src={construccion} className="app_construccion" alt="" /></h1>} />
           <Route path="ingresarregistos" element={<IngresarRegistros />}> 
+
           <Route index element={<TabGeneral />} /> {/* Default tab */}
-  <Route path="general" element={<TabGeneral />} />
-  <Route path="fallos" element={<TabFallos />} />
-  <Route path="apelacion" element={<TabApelacion />} />
-  <Route path="incidentes" element={<TabIncidentes />} />
-  <Route path="otros" element={<TabOtros />} />
-          
+           <Route path="general" element={<TabGeneral />} />
+           <Route path="fallos" element={<TabFallos />} />
+           <Route path="apelacion" element={<TabApelacion />} />
+           <Route path="incidentes" element={<TabIncidentes />} />
+           <Route path="otros" element={<TabOtros />} />
           </Route>  
+
           <Route path="basededatos" element={<h1>Base de datos Tutelas <img src={construccion} className="app_construccion" alt="" /></h1>} />
           <Route path="tutelas" element={<h1>Tutelas asignadas<img src={construccion} className="app_construccion" alt="" /></h1>} />
           <Route path="fallos" element={<h1>Fallos concedidos<img src={construccion} className="app_construccion" alt="" /></h1>} />
           <Route path="incidentes" element={<h1>Incidentes de desacato <img src={construccion} className="app_construccion" alt="" /></h1>} />
           <Route path="accionesp" element={<h1>Acciones populares<img src={construccion} className="app_construccion" alt="" /></h1>} />
         </Route>
-
-        
-  
-
-
-
       </Routes>
 
       <Footer />

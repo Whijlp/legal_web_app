@@ -1,0 +1,30 @@
+
+.fallo-seccion{
+ display: flex;
+  
+}
+
+.fallo-row {
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ gap: 10px 10px;
+
+}
+ 
+.fallo-label {
+  font-weight: bold;
+  color: #2d3b8e;
+  margin: 10px;
+}
+
+.fallo-select,
+.fallo-input-date {
+    height: 35px;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.fallo-select.mini {
+  width: 120px;
+}
