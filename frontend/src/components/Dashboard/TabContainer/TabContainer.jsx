@@ -7,7 +7,7 @@ function TabContainer() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const currentTab = location.pathname.split("/").pop(); 
+const currentTab = tabs.find((tab) => location.pathname.endsWith(tab)) || "general";
 
   const [activeTab, setActiveTab] = useState(currentTab || "general");
 

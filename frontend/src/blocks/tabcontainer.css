@@ -1,7 +1,7 @@
 .tabContainer {
   display: flex;
   border-color: #1E3A8A;
-  border-width: thick;  
+   ;
   width: 100%;
 } 
 
@@ -10,6 +10,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 600px;
+  height: 500px;
   background-color: #1E3A8A;
   padding: 20px;
   border-radius: 5px;
@@ -22,7 +24,9 @@
 
 .tabContainer_tabs-content{
   background-color:white ;
-  padding: 15px;
+  width: 100%;
+  height: 100%;
+
 }
 .tabs_date{
   width: 100%;

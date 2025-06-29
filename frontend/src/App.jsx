@@ -28,12 +28,11 @@ function App() {
           <Route path="/auth" element={<Authpage />}>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-        </Route>
+         </Route>
         
-        <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="inicio" element={<h1>Bienvenido al Dashboard <img src={construccion} className="app_construccion" alt="" /></h1>} />
+         <Route path="/inicio" element={<Dashboard />}>
+         
           <Route path="ingresarregistos" element={<IngresarRegistros />}> 
-
           <Route index element={<TabGeneral />} /> {/* Default tab */}
            <Route path="general" element={<TabGeneral />} />
            <Route path="fallos" element={<TabFallos />} />

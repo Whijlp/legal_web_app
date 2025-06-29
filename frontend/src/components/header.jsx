@@ -25,18 +25,16 @@ function Header() {
           Sistema para la Gestion para de Acciones Constitucionales
         </h2>
       </div>
-  {isLoginPage ? (
-      <Link to="/" className="header_login">
-        ⬅ Volver al inicio
-      </Link>
-    ) : user ? (
-      <span>👤 Bienvenido: {user.name}</span>
-    ) : (
-      <Link to="/auth/login" className="header_login">
-        Iniciar sesión o
-        Registrate
-      </Link>
-    )}
+ {user ? (
+  <span className="header_login">👤 Bienvenido: {user.name}</span>
+) : location.pathname === "/auth/login" ? (
+  <Link to="/" className="header_login">⬅ Volver al inicio</Link>
+) : (
+  <Link to="/auth/login" className="header_login">
+    Iniciar sesión o Registrate
+  </Link>
+)}
+
     </header>
   );
 }

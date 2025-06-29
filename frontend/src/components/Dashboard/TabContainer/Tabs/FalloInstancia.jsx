@@ -1,41 +1,19 @@
 import { useState, useEffect } from "react";
+import { sumarDiasHabiles } from "../../../../utils/fechaUtils";
+import SelectField from "../../../../utils/SelectField";
+import DateInput from "../../../../utils/DateInput";
+import SelectTermino from "../../../../utils/SelecTermino";
 
-
-const festivosColombia = new Set([
-  "2025-01-01", "2025-01-06", "2025-03-24", "2025-04-17", "2025-04-18",
-  "2025-05-01", "2025-06-02", "2025-06-23", "2025-06-30", "2025-07-20",
-  "2025-08-07", "2025-08-18", "2025-10-13", "2025-11-03", "2025-11-17",
-  "2025-12-08", "2025-12-25"
-]);
-
-// 📅 Función para sumar días hábiles excluyendo fines de semana y festivos
-const sumarDiasHabiles = (fechaInicio, diasHabiles) => {
-  const fecha = new Date(fechaInicio);
-  const esHabil = (f) =>
-    f.getDay() !== 0 &&
-    f.getDay() !== 6 &&
-    !festivosColombia.has(f.toISOString().split("T")[0]);
-
-  const dias = Array.from({ length: diasHabiles * 2 + 20 }, (_, i) => {
-    const f = new Date(fecha);
-    f.setDate(f.getDate() + i + 1);
-    return f;
-  });
-
-  const habiles = dias.filter(esHabil);
-  return habiles[diasHabiles - 1]?.toISOString().split("T")[0] || "";
-};
-
-function FalloInstancia({ titulo }) {
+function FalloInstancia({ titulo, falloOptions }) {
   const [fechaEntrada, setFechaEntrada] = useState("");
   const [fallo, setFallo] = useState("");
   const [termino, setTermino] = useState("");
   const [fechaVencimiento, setFechaVencimiento] = useState("");
 
-  const mostrarCamposConcedido = fallo === "concedido";
+  const esConcede = fallo === "Concede";
 
   useEffect(() => {
-    if (fechaEntrada && termino && fallo === "concedido") {
+    if (fechaEntrada && termino && esConcede) {
       const vencimiento = sumarDiasHabiles(fechaEntrada, parseInt(termino));
       setFechaVencimiento(vencimiento);
     } else {
@@ -47,55 +25,48 @@ function FalloInstancia({ titulo }) {
     <div className="fallo-seccion">
       <label className="fallo-label">{titulo}</label>
 
+      {/* Fecha de entrada */}
       <div className="fallo-row">
-        <label>📅 </label>
-        <input
-          type="date"
-          className="fallo-input-date"
+        <label>📅 Fecha:</label>
+        <DateInput
           value={fechaEntrada}
           onChange={(e) => setFechaEntrada(e.target.value)}
+          className="fallo-input-date"
         />
       </div>
 
+
       <div className="fallo-row">
-        <label>📄 Fallo:</label>
-        <select
-          className="fallo-select"
+        <SelectField
+          label="📄 Fallo:"
           value={fallo}
           onChange={(e) => {
-            setFallo(e.target.value);
-            if (e.target.value !== "concedido") {
+            const val = e.target.value;
+            setFallo(val);
+            if (val !== "Concede") {
               setTermino("");
               setFechaVencimiento("");
             }
           }}
-        >
-          <option value="">Seleccione un fallo</option>
-          <option value="concedido">Concede</option>
-          <option value="negado">Niega</option>
-        </select>
+          options={falloOptions}
+          className="fallo-select"
+        />
       </div>
-
-      {mostrarCamposConcedido && (
+      {esConcede && (
         <div className="fallo-row">
           <label>⏱ Término:</label>
-          <select
-            className="fallo-select mini"
+          <SelectTermino
             value={termino}
             onChange={(e) => setTermino(e.target.value)}
-          >
-            <option value="">término</option>
-            <option value="1">1 día</option>
-            <option value="2">2 días</option>
-            <option value="3">3 días</option>
-          </select>
+            className="select-mini"
+          />
 
-          <label>📆</label>
-          <input
-            type="date"
-            className="fallo-input-date"
+          <label>📆 Vencimiento:</label>
+          <DateInput
             value={fechaVencimiento}
+            onChange={() => {}}
             readOnly
+            className="fallo-input-date"
           />
         </div>
       )}

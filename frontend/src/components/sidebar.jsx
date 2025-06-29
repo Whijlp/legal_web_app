@@ -13,27 +13,27 @@ function Sidebar() {
 
   return (
     <div className="sidebar">
-       <Link className="sidebar_list-item" to="/dashboard/inicio"><h2 className="sidebar_inicio">Inicio</h2></Link>
+       <Link className="sidebar_list-item" to="/inicio"><h2 className="sidebar_inicio">Inicio</h2></Link>
       <ul className="sidebar_list">
         <li className="sidebar_list-item">
         </li>
         <li className="sidebar_list-item">
-          <Link className="sidebar_list-item" to="/dashboard/basededatos">Base de datos</Link>
+          <Link className="sidebar_list-item" to="/inicio/basededatos">Base de datos</Link>
         </li>
         <li className="sidebar_list-item">
-          <Link className="sidebar_list-item" to="/dashboard/ingresarregistos">Ingresar y modificar Registros</Link>
+          <Link className="sidebar_list-item" to="/inicio/ingresarregistos">Ingresar y modificar Registros</Link>
         </li>
         <li className="sidebar_list-item">
-          <Link className="sidebar_list-item" to="/dashboard/tutelas">Tutelas asignadas</Link>
+          <Link className="sidebar_list-item" to="/inicio/tutelas">Tutelas asignadas</Link>
         </li>
         <li className="sidebar_list-item">
-          <Link className="sidebar_list-item" to="/dashboard/fallos">Fallos concede</Link>
+          <Link className="sidebar_list-item" to="/inicio/fallos">Fallos concede</Link>
         </li>
         <li className="sidebar_list-item">
-          <Link className="sidebar_list-item" to="/dashboard/incidentes">Incidentes</Link>
+          <Link className="sidebar_list-item" to="/inicio/incidentes">Incidentes</Link>
         </li>
         <li className="sidebar_list-item">
-          <Link className="sidebar_list-item" to="/dashboard/accionesp">Acciones populares</Link>
+          <Link className="sidebar_list-item" to="/inicio/accionesp">Acciones populares</Link>
         </li>
       </ul>
 
