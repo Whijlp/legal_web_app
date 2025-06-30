@@ -39,20 +39,18 @@ function TabGeneral() {
           <DateInput
             value={fechaIngreso}
             onChange={(e) => setFechaIngreso(e.target.value)}
-            className="input-mini"
             placeholder="Fecha de ingreso"
           />
 
           <SelectTermino
             value={termino}
             onChange={(e) => setTermino(e.target.value)}
-            className="select-mini"
+           
           />
 
           <DateInput
             value={fechaRespuesta}
             readOnly
-            className="input-mini"
             placeholder="Fecha de respuesta"
           />
         </div>
@@ -62,14 +60,14 @@ function TabGeneral() {
             name="accionante"
             value={formData.accionante}
             onChange={handleInputChange}
-            placeholder="Nombre de accionante"
+            placeholder="Accionante"
             className="tabs_inputs"
           />
           <TextInput
             name="radicado"
             value={formData.radicado}
             onChange={handleInputChange}
-            placeholder="Número de Radicado"
+            placeholder="Radicado"
             className="tabs_inputs"
           />
           <TextInput
@@ -79,6 +77,13 @@ function TabGeneral() {
             placeholder="Despacho"
             className="tabs_inputs"
           />
+              <TextInput
+            name="tema"
+            value={formData.tema}
+            onChange={handleInputChange}
+            placeholder="Tema específico"
+            className="tabs_inputs"
+          />
           <TextInput
             name="convocatoria"
             value={formData.convocatoria}
@@ -86,13 +91,7 @@ function TabGeneral() {
             placeholder="Convocatoria"
             className="tabs_inputs"
           />
-          <TextInput
-            name="tema"
-            value={formData.tema}
-            onChange={handleInputChange}
-            placeholder="Tema específico"
-            className="tabs_inputs"
-          />
+      
           <TextInput
             name="abogado"
             value={formData.abogado}

@@ -2,5 +2,57 @@
 .tabs{
     display: flex;
     flex-direction: column;
+    
+}
 
+
+.tabs_date{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 30px;
+}
+
+.tabs_termino{   
+  height: 36px;
+  border-radius: 5px;
+  background-color: #a8a8a83f;
+  border: 1px solid #ccc;
+ width: 100px;
+}
+
+.tabs_date-input{
+    padding: auto   ;
+  margin: auto;
+  height: 36px;
+  border-radius: 5px;
+  background-color: #a8a8a83f;
+  border: 1px solid #ccc;
+}
+
+.tabs_inputs{
+ background-color: #a8a8a83f;
+ height: 36px;
+ width: 100%;
+ border:1px solid #ccc;
+ border-radius: 5px;
+}
+
+.tab_apelacion{
+
+display: grid;
+grid-template-columns: repeat(2, auto);
+gap: 30px;
+ 
+place-items: center;
+justify-content: center;
+align-items: center;
+height: 70%;
+}
+
+#tabs_form-tuela{
+  margin: 50px 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px; 
 }

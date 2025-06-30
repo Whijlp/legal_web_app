@@ -16,10 +16,11 @@ function TabFallos() {
       <FalloInstancia
         titulo="Fallo de 2° instancia"
         falloOptions={[
-          "concedido acción popular",
-          "concedido parcial",
-          "negado totalmente",
-          "inadmitido",
+          "Concede",
+          "Niega",
+          "Concede no Ordena",
+          "Declara improcedente",
+          "Desistimiento de la accion ",
         ]}
       />
     </div>

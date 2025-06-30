@@ -25,7 +25,8 @@ function TabIncidentes() {
 };
 
   return (
-    <div className="tabIncidentes" style={{ backgroundColor: "white" }}>
+    <div className="tabincidentes" >
+      
       {requerimientos.map((item, index) => {
         const vencimiento =
           item.fecha && item.termino
@@ -33,7 +34,7 @@ function TabIncidentes() {
             : "";
 
         return (
-          <div className="requerimiento-item" key={index}>
+          <div className="tabrequerimiento_container" key={index}>
             <SelectField
               label={`Requerimiento ${index + 1}`}
               value={item.req}
@@ -46,7 +47,7 @@ function TabIncidentes() {
                 "Incidente sanciona a la CNSC",
                 "Incidente sanciona a otra entidad",
               ]}
-              className="select-mini"
+              className="tabs_inputs"
             />
             <DateInput
               value={item.fecha}
@@ -67,9 +68,9 @@ function TabIncidentes() {
             <button
               type="button"
               onClick={() => eliminarRequerimiento(index)}
-              className="btn-eliminar"
+              className="btn-eliminar btn-incidente"
             >
-              ✕
+              Eliminar requerimiento
             </button>
           </div>
         );
@@ -78,7 +79,7 @@ function TabIncidentes() {
       <button
         type="button"
         onClick={agregarRequerimiento}
-        className="btn-agregar"
+        className="btn-agregar btn-incidente"
       >
         + Agregar Requerimiento
       </button>

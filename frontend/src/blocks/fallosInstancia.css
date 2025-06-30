@@ -1,26 +1,28 @@
 
 .fallo-seccion{
- display: flex;
+display: flex;
+flex-direction: column;
   
 }
 
-.fallo-row {
+ .fallos_container{
+  margin: 20px;
  display: grid;
- grid-template-columns: repeat(3, 1fr);
- gap: 10px 10px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  
+ }
 
-}
- 
 .fallo-label {
+  padding-top: 30px;
+  margin: auto;
   font-weight: bold;
   color: #2d3b8e;
-  margin: 10px;
 }
 
 .fallo-select,
 .fallo-input-date {
-    height: 35px;
-  padding: 0.5rem;
+  height: 35px;
   border-radius: 10px;
   border: 1px solid #ccc;
 }

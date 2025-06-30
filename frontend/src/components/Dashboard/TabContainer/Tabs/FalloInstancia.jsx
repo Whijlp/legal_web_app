@@ -24,49 +24,43 @@ function FalloInstancia({ titulo, falloOptions }) {
   return (
     <div className="fallo-seccion">
       <label className="fallo-label">{titulo}</label>
+      <div className="fallos_container">
 
-      {/* Fecha de entrada */}
-      <div className="fallo-row">
-        <label>📅 Fecha:</label>
-        <DateInput
-          value={fechaEntrada}
-          onChange={(e) => setFechaEntrada(e.target.value)}
-          className="fallo-input-date"
-        />
+      <DateInput
+        value={fechaEntrada}
+        onChange={(e) => setFechaEntrada(e.target.value)}
+        className="fallo-input-date"
+      />
+
+      <SelectField
+        label="Fallo:"
+        value={fallo}
+        onChange={(e) => {
+          const val = e.target.value;
+          setFallo(val);
+          if (val !== "Concede") {
+            setTermino("");
+            setFechaVencimiento("");
+          }
+        }}
+        options={falloOptions}
+        className="fallo-select"
+      />
+
       </div>
 
-
-      <div className="fallo-row">
-        <SelectField
-          label="📄 Fallo:"
-          value={fallo}
-          onChange={(e) => {
-            const val = e.target.value;
-            setFallo(val);
-            if (val !== "Concede") {
-              setTermino("");
-              setFechaVencimiento("");
-            }
-          }}
-          options={falloOptions}
-          className="fallo-select"
-        />
-      </div>
       {esConcede && (
-        <div className="fallo-row">
-          <label>⏱ Término:</label>
+       <div className="fallos_container">
           <SelectTermino
             value={termino}
             onChange={(e) => setTermino(e.target.value)}
             className="select-mini"
           />
-
-          <label>📆 Vencimiento:</label>
           <DateInput
             value={fechaVencimiento}
             onChange={() => {}}
             readOnly
-            className="fallo-input-date"
+            className="tabs_date-input"
           />
         </div>
       )}

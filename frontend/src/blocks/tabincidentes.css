@@ -1,0 +1,31 @@
+.tabincidentes{
+    display: flex;
+flex-direction: column;
+padding: 50px;
+
+}
+
+.tabrequerimiento_container{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 30px 20px;
+    place-items: center;
+    justify-content: center;
+    align-content: center;
+    
+}
+
+.btn-incidente{
+    font-size: 14px;
+    cursor: pointer;
+    color: white;
+    background-color: #1E3A8A;
+    height: 36px;
+    border-radius: 5px;
+    box-shadow: 1px 3px 2px rgba(150, 148, 148, 0.534)
+}
+
+.btn-agregar{
+ 
+    margin: 20px auto;
+}
