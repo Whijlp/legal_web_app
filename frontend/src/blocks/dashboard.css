@@ -7,7 +7,18 @@
 
 .dashboard_content{
     position: fixed;
+    display: flex;
+   
     top: 140px;
-    left: 600px;   
+    left: 300px;   
+
+}
+
+.dashboard_tareas{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  row-gap: 10px;
 
 }

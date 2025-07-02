@@ -25,16 +25,17 @@ function TareasDashboard() {
 
   return (
     <div className="dashboard_tareas">
-      <h2>Tareas Importantes</h2>
+      <h2 className="tareas_titulo">Tareas Importantes</h2>
 
-      <div className="tarea-form">
+      <div className="tareas_contenido">
         <input
           type="text"
           placeholder="Escribe una tarea..."
           value={titulo}
           onChange={(e) => setTitulo(e.target.value)}
+          className="tabs_inputs"
         />
-        <button onClick={agregarTarea}>Agregar</button>
+        <button onClick={agregarTarea} className="btnotros">Tarea nueva</button>
       </div>
 
       <div className="tarea-lista">

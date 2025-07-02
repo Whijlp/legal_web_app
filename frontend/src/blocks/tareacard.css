@@ -1,0 +1,29 @@
+.tareas_contenido{
+    display: grid;
+    grid-template-columns: 1 auto;
+    gap: 20px;
+}
+.tareas_titulo{
+    margin: 0;
+}
+
+.tarea-card{
+    text-align: start;
+    background-color: #a8a8a83f;
+    border-radius: 5px;
+     box-shadow: 1px 3px 2px rgba(150, 148, 148, 0.534)
+    
+}
+
+.tare_btn-eliminar{
+    padding-top: 5px;
+    width: 100%;
+    background: transparent;
+    border: none;
+    object-fit: cover;
+}
+
+.tarea_nueva{
+    padding: 5px;
+    margin: 0;
+}
