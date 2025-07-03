@@ -3,9 +3,10 @@ import image from "../images/image7.png";
 function Landingnew() {
   return (
     <div className="landing-new">
-      <img src={image} alt="imagen de noticia" />
+      <img src={image} alt="imagen de noticia"  className="landingnew_img"/>
 
       <div className="landing-new-container">
+        {" "}
         <p className="landing-new-subtitle "> Comunicado oficial de la Comisión Nacional del Servicio Civil</p>
         <p className="landing-new-text">
           {" "}

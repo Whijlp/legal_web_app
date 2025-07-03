@@ -1,10 +1,8 @@
 .header {
-
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 5px 200px;
-  
   background-color: white;
   
 }
@@ -36,11 +34,49 @@
 }
 
 .header_login {
+  display: inline;
   width: 138px;
   font-weight: bold;
   text-decoration: none;
   color: #0033a0;
-  display: flex;
-  align-items: center;
-  gap: 5px;
+ 
+}
+.header_login-img{
+ display: none;
+}
+
+@media screen and (max-width:768px){
+  .header{padding: 5px;
+  }
+  
+  .header_title{
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width:425px){
+  .header_img-praetor-name{
+        height: 29px;
+    width: 140px;
+  }
+ .header_login-img{
+    display: inline-block;
+  }
+  .header_login-text {
+    display: none;
+  }
+
+.header_img-cnsc{
+  height: 40px;
+} 
+.header_img-praetor{
+  width: 50px;
+  height: 35px;
+}
+.header_img-praetor-name{
+  width: 100px;
+  height: 20px;
+}
+
+
 }

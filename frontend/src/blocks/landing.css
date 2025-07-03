@@ -1,5 +1,4 @@
 .landing{
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,7 +6,6 @@
 }
 .landingImage{
     width: 100%;
-   
     object-fit:cover;
 }
 
@@ -32,3 +30,17 @@ box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.5)
 width: 236px;
   height: 88px;
 }
+
+@media screen and (max-width: 768px) {
+
+  .lading_button-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+   margin-top: 20px;
+}
+  
+}
+
