@@ -2,6 +2,7 @@ import cnsc from "../images/cnsc.png";
 import preator from "../images/praetoreLogo.png";
 import preatorName from "../images/praetorName.png";
 import login from "../images/login.png"
+import{House, UserCog} from "lucide-react"
 
 import { Link, useLocation } from "react-router";
 import { useAuth } from "../contexts/AuthContext";
@@ -29,11 +30,15 @@ function Header() {
  {user ? (
   <span className="header_login">👤 Bienvenido: {user.name}</span>
 ) : location.pathname === "/auth/login" ? (
-  <Link to="/" className="header_login">⬅ Volver al inicio</Link>
+  <Link to="/" className="header_login">
+    <span className="header_login-text">⬅ Volver al inicio</span>
+    <House className="header_login-img"/>
+
+    </Link>
 ) : (
   <Link to="/auth/login" className="header_login">
     <span className="header_login-text">Iniciar sesión o Regístrate</span>
-    <img src={login} alt=""  className="header_login-img"/>
+   <UserCog  className="header_login-img"/>
   </Link>
   
 )}

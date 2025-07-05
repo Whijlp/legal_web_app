@@ -35,5 +35,27 @@ color:#1E3A8A ;
 }
 
 .crear_registro{
+    margin-top:20px ;
     width: 150px;
 } 
+
+@media screen and (max-width:425px) {
+.registros_title{
+    width: 100%;
+    font-size: 17px;
+}
+
+    .registros{
+       display: grid;
+       grid-template-columns: repeat(1,1fr);
+       align-items: center;
+       justify-items: center;
+        width: 80%;
+        font-size: 14px;
+    }
+    .registros_form-item{
+        margin: 10px auto;
+         width: 100%;
+    }
+  
+}

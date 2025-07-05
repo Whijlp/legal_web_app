@@ -29,3 +29,12 @@ padding: 50px;
  
     margin: 20px auto;
 }
+
+@media screen and (max-width:425px){
+    .tabincidentes{
+        padding: 30px;
+    }
+    .tabrequerimiento_container{
+        grid-template-columns: repeat(1,1fr);;
+    }
+}

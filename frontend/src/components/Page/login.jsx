@@ -50,7 +50,7 @@ function Login() {
   return (
     <>
       
-        <h1>Datos de usuario</h1>
+        <h1 className="login_title">Datos de usuario</h1>
         <form className="login-form" onSubmit={handleLogin}>
           <input
             className="login_input-name"

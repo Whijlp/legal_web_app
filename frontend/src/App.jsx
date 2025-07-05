@@ -1,4 +1,4 @@
-import construccion from "../src/images/construccion.png"
+import construccion from "../src/images/enconstruccion.png"
 import Header from "./components/header";
 import Footer from "./components/footer";
 import Separador from "./components/Separador";
@@ -33,7 +33,7 @@ function App() {
          <Route path="/inicio" element={<Dashboard />}>
          
           <Route path="ingresarregistos" element={<IngresarRegistros />}> 
-          <Route index element={<TabGeneral />} /> {/* Default tab */}
+          <Route index element={<TabGeneral />} /> 
            <Route path="general" element={<TabGeneral />} />
            <Route path="fallos" element={<TabFallos />} />
            <Route path="apelacion" element={<TabApelacion />} />
@@ -41,11 +41,11 @@ function App() {
            <Route path="otros" element={<TabOtros />} />
           </Route>  
 
-          <Route path="basededatos" element={<h1>Base de datos Tutelas <img src={construccion} className="app_construccion" alt="" /></h1>} />
-          <Route path="tutelas" element={<h1>Tutelas asignadas<img src={construccion} className="app_construccion" alt="" /></h1>} />
-          <Route path="fallos" element={<h1>Fallos concedidos<img src={construccion} className="app_construccion" alt="" /></h1>} />
-          <Route path="incidentes" element={<h1>Incidentes de desacato <img src={construccion} className="app_construccion" alt="" /></h1>} />
-          <Route path="accionesp" element={<h1>Acciones populares<img src={construccion} className="app_construccion" alt="" /></h1>} />
+          <Route path="basededatos" element={<h1 className="tab_construccion">Base de datos Tutelas <img src={construccion} className="app_construccion" alt="" /></h1>} />
+          <Route path="tutelas" element={<h1 className="tab_construccion">Tutelas asignadas<img src={construccion} className="app_construccion" alt="" /></h1>} />
+          <Route path="fallos" element={<h1 className="tab_construccion">Fallos concedidos<img src={construccion} className="app_construccion" alt="" /></h1>} />
+          <Route path="incidentes" element={<h1 className="tab_construccion">Incidentes de desacato <img src={construccion} className="app_construccion" alt="" /></h1>} />
+          <Route path="accionesp" element={<h1 className="tab_construccion">Acciones populares<img src={construccion} className="app_construccion" alt="" /></h1>} />
         </Route>
       </Routes>
 

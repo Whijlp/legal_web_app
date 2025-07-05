@@ -1,7 +1,7 @@
 .tabContainer {
   display: flex;
   border-color: #1E3A8A;
-   ;
+   
   width: 100%;
 } 
 
@@ -44,5 +44,30 @@
   color: #1E3A8A;
   font-weight: bold;
   padding: 10px ;
+
+}
+
+
+
+@media screen and (max-width:425px){
+
+  .tabContainer_tabs{
+    margin-top: 20px;
+    height: 100%;
+    width: 80%;
+
+  }
+  .tabContainer_tabs-content{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #002f87;
+
+  }
+
+  .tabContainer_tabs-header{
+    flex-direction: column;
+  }
+
+
 
 }
