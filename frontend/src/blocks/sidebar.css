@@ -1,5 +1,5 @@
 .sidebar{
-    height: 100%;
+   height: 100%;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -94,6 +94,7 @@ color: #f0f0f0;
 
 @media screen and (max-width:768px){
 .sidebar{
+  height: 100%;
        width: auto;
 }
     .sidebar_burguer{
@@ -107,7 +108,11 @@ color: #f0f0f0;
     color: #1E3A8A;
      
     }
-    .sidebar_text{display: none;}
+    .sidebar_text{display: none;
+    }
+    .sidebar_list-item{
+      padding: 5px;
+    }
     .sidebar_list-icon{
      
      display: block;

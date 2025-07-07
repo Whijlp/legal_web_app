@@ -55,6 +55,10 @@
 }
 
 @media screen and (max-width:425px){
+  .header_login{
+    text-align: center;
+    font-size: 10PX;
+  }
   .header_img-praetor-name{
         height: 29px;
     width: 140px;

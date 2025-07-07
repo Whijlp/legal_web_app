@@ -19,7 +19,7 @@ import TabOtros from "./components/Dashboard/TabContainer/Tabs/TabOtros";
 
 function App() {
   return (
-    <div className="page">  |
+    <div className="page">  
       {/*<div className="page-stripes"></div> */}
       <Header />
       <Separador />

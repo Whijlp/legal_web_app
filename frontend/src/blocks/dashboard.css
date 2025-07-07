@@ -1,4 +1,5 @@
 .dashboard {
+  max-width: 100%;
  flex-grow: 1;
   position: relative; 
   min-width:  100%;
@@ -23,7 +24,7 @@
 
 @media screen and (max-width: 768px) {
 
- 
+
   .dashboard_content{
     margin-left: 20px;
     padding: 10px;
