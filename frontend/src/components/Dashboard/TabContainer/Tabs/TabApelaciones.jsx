@@ -1,6 +1,7 @@
 import { useState } from "react";
 import SelectField from "../../../../utils/SelectField";
 import DateInput from "../../../../utils/DateInput";
+import TabsButton from "../Tabs/TabsButton";
 
 function TabApelaciones() {
   const [impugnacion, setImpugnacion] = useState("");
@@ -28,6 +29,7 @@ function TabApelaciones() {
         className="input-mini"
       />
 
+      <TabsButton/>
       <SelectField
         value={impugnacion}
         onChange={(e) => setImpugnacion(e.target.value)}
@@ -47,6 +49,7 @@ function TabApelaciones() {
         onChange={(e) => setFechaImpugnacion(e.target.value)}
         className="input-mini"
       />
+         <TabsButton/>
     </div>
   );
 }

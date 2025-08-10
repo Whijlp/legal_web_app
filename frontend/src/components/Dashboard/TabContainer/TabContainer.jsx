@@ -1,11 +1,23 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router";
-
+import {TabsContext} from "../../../utils/TabsContext"
 function TabContainer() {
   const tabs = ["general", "fallos", "apelacion", "incidentes", "otros"];
   const navigate = useNavigate();
   const location = useLocation();
+  const [datosTabs, setDatosTabs] = useState({
+  falloInstancia: null,
+  notificacion: null,
+
+});
+const handleGuardarTab = (nombreTab, nuevosDatos) => {
+  setDatosTabs((prev) => ({
+    ...prev,
+    [nombreTab]: nuevosDatos,
+  }));
+  console.log(`Guardado ${nombreTab}:`, nuevosDatos);
+};
 
 const currentTab = tabs.find((tab) => location.pathname.endsWith(tab)) || "general";
 
@@ -19,7 +31,9 @@ const currentTab = tabs.find((tab) => location.pathname.endsWith(tab)) || "gener
     navigate(tab); 
   };
 
+
   return (
+    <TabsContext.Provider value={{ datosTabs, handleGuardarTab }}>
     <div className="tabContainer">
       <div
         role="tablist"
@@ -47,6 +61,7 @@ const currentTab = tabs.find((tab) => location.pathname.endsWith(tab)) || "gener
         </div>
       </div>
     </div>
+    </TabsContext.Provider>
   );
 }
 

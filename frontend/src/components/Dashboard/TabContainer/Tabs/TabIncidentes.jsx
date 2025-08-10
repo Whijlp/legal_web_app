@@ -3,6 +3,7 @@ import SelectField from "../../../../utils/SelectField";
 import DateInput from "../../../../utils/DateInput";
 import SelectTermino from "../../../../utils/SelecTermino";
 import { sumarDiasHabiles } from "../../../../utils/fechaUtils";
+import TabsButton from "../Tabs/TabsButton";
 
 function TabIncidentes() {
   const [requerimientos, setRequerimientos] = useState([
@@ -72,6 +73,7 @@ function TabIncidentes() {
             >
               Eliminar requerimiento
             </button>
+            <TabsButton />
           </div>
         );
       })}

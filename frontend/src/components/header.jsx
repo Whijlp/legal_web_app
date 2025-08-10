@@ -28,7 +28,7 @@ function Header() {
         </h2>
       </div>
  {user ? (
-  <span className="header_login">👤 Bienvenido: {user.name}</span>
+  <span className="header_login">👤 Bienvenido: {user.nombre}</span>
 ) : location.pathname === "/auth/login" ? (
   <Link to="/" className="header_login">
     <span className="header_login-text">⬅ Volver al inicio</span>

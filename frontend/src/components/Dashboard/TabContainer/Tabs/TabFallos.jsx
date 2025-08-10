@@ -1,6 +1,9 @@
 import FalloInstancia from "./FalloInstancia";
+import {useTabs} from "../../../../utils/TabsContext";
 
 function TabFallos() {
+  const { datosTabs, handleGuardarTab } = useTabs();
+
   return (
     <div>
       <FalloInstancia
@@ -12,6 +15,8 @@ function TabFallos() {
           "Declara improcedente",
           "Desistimiento de la accion ",
         ]}
+        registroGuardado={datosTabs.falloInstancia}
+        onGuardar={(datos) => handleGuardarTab("falloInstancia", datos)}
       />
       <FalloInstancia
         titulo="Fallo de 2° instancia"
@@ -22,6 +27,8 @@ function TabFallos() {
           "Declara improcedente",
           "Desistimiento de la accion ",
         ]}
+        registroGuardado={datosTabs.falloInstancia}
+        onGuardar={(datos) => handleGuardarTab("falloInstancia", datos)}
       />
     </div>
   );

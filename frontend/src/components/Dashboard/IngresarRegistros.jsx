@@ -4,10 +4,13 @@ import TabContainer from "./TabContainer/TabContainer";
 
 function IngresarRegistros() {
   const [showTab, setShowTab] = useState(false);
+  const [busquedaNombre, setBusquedaNombre] = useState("");
+  const [busquedaRadicado, setBusquedaRadicado] = useState("");
 
   const handleShowTab = (e) => {
     e.preventDefault();
-    setShowTab(prev => !prev);}
+    setShowTab(prev => !prev);
+  }
 
   return (
     <div className="registros">
@@ -24,6 +27,8 @@ function IngresarRegistros() {
               id="nombre"
               name="nombre"
               placeholder="Buscar accionante"
+              value={busquedaNombre}
+              onChange={(e) => setBusquedaNombre(e.target.value)}
             />
             <button className="registros_form-button" type="button" id="nombre_button">Buscar</button>
           </div>
@@ -34,6 +39,8 @@ function IngresarRegistros() {
               id="radicado"
               name="radicado"
               placeholder="Buscar por número radicado"
+              value={busquedaRadicado}
+              onChange={(e) => setBusquedaRadicado(e.target.value)}
             />
             <button className="registros_form-button" type="button" id="radicado_button">Buscar</button>
           </div>

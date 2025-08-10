@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { sumarDiasHabiles } from "../../../../utils/fechaUtils";
+import TabsButton from "../Tabs/TabsButton";
 import SelectTermino from "../../../../utils/SelecTermino";
 import DateInput from "../../../../utils/DateInput";
 import TextInput from "../../../../utils/TextInput";
@@ -100,6 +101,8 @@ function TabGeneral() {
             className="tabs_inputs"
           />
         </div>
+
+        < TabsButton />
       </form>
     </div>
   );

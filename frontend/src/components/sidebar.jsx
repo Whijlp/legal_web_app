@@ -8,7 +8,9 @@ import {
 import { useState } from "react";
 
 function Sidebar() {
-  const { logout } = useAuth();
+  const auth = useAuth();
+   console.log("Auth context:", auth);
+  const { logout } = auth
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 

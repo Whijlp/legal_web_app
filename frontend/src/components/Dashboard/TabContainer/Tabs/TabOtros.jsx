@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import DateInput from "../../../../utils/DateInput";
+import TabsButton from "../Tabs/TabsButton";
 
 function TabOtros() {
 
@@ -39,7 +40,7 @@ function TabOtros() {
             className="tabs_date-input"
           />
 
-       
+       <TabsButton />
           <button
             type="button"
             onClick={() => removeReq(idx)}
