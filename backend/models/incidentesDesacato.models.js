@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 const incidenteSchema = new mongoose.Schema({
   requerimiento_previo: { type: Boolean, default: false },
   fecha_notificacion: Date,
@@ -5,4 +7,4 @@ const incidenteSchema = new mongoose.Schema({
   apertura: { type: Boolean, default: false },
   incidente_sanciona: { type: Boolean, default: false },
 }, { timestamps: true });
-module.exports = require('mongoose').model('IncidenteDesacato', incidenteSchema);
+module.exports = mongoose.model('IncidenteDesacato', incidenteSchema);

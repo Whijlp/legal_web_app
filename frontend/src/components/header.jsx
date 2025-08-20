@@ -3,7 +3,6 @@ import preator from "../images/praetoreLogo.png";
 import preatorName from "../images/praetorName.png";
 import login from "../images/login.png"
 import{House, UserCog} from "lucide-react"
-
 import { Link, useLocation } from "react-router";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -11,7 +10,10 @@ import { useAuth } from "../contexts/AuthContext";
 function Header() {
   const { user } = useAuth();
   const location = useLocation();
-  const isLoginPage = location.pathname === "/auth/login"
+
+  const isLoginPage = location.pathname.startsWith("/auth/login");
+  const isDashboardPage = location.pathname.startsWith("/inicio");
+
   return (
     <header className="header">
       <img src={cnsc} className="header_img-cnsc" alt="Logo cnsc" />
@@ -24,25 +26,23 @@ function Header() {
           alt="Logo preator"
         />
         <h2 className="header_title">
-          Sistema para la Gestion para de Acciones Constitucionales
+          Sistema para la Gestión de Acciones Constitucionales
         </h2>
       </div>
- {user ? (
-  <span className="header_login">👤 Bienvenido: {user.nombre}</span>
-) : location.pathname === "/auth/login" ? (
-  <Link to="/" className="header_login">
-    <span className="header_login-text">⬅ Volver al inicio</span>
-    <House className="header_login-img"/>
 
-    </Link>
-) : (
-  <Link to="/auth/login" className="header_login">
-    <span className="header_login-text">Iniciar sesión o Regístrate</span>
-   <UserCog  className="header_login-img"/>
-  </Link>
-  
-)}
-
+      {user && isDashboardPage ? (
+        <span className="header_login">👤 Bienvenido: {user.nombre}</span>
+      ) : isLoginPage ? (
+        <Link to="/" className="header_login">
+          <span className="header_login-text">⬅ Volver al inicio</span>
+          <House className="header_login-img" />
+        </Link>
+      ) : (
+        <Link to="/auth/login" className="header_login">
+          <span className="header_login-text">Iniciar sesión o Regístrate</span>
+          <UserCog className="header_login-img" />
+        </Link>
+      )}
     </header>
   );
 }

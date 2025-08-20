@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router";
 import {TabsContext} from "../../../utils/TabsContext"
+
 function TabContainer() {
   const tabs = ["general", "fallos", "apelacion", "incidentes", "otros"];
   const navigate = useNavigate();
@@ -57,6 +58,9 @@ const currentTab = tabs.find((tab) => location.pathname.endsWith(tab)) || "gener
         </div>
 
         <div className="tabContainer_tabs-content">
+      
+
+
           <Outlet />
         </div>
       </div>

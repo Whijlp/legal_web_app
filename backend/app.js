@@ -14,7 +14,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
-app.use('/api//tutelas', tutelaRoutes);
+app.use('/api/tutelas', tutelaRoutes);
 
 app.get('/', (req, res) => res.send('API Tutelas - OK'));
 

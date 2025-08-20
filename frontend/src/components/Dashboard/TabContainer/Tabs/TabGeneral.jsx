@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import { sumarDiasHabiles } from "../../../../utils/fechaUtils";
+import { useTutela } from "../../../../utils/useTutela";
 import TabsButton from "../Tabs/TabsButton";
 import SelectTermino from "../../../../utils/SelecTermino";
 import DateInput from "../../../../utils/DateInput";
 import TextInput from "../../../../utils/TextInput";
+import InfoToolTip from "../../../popup/InfoToolTip"; 
 
-function TabGeneral() {
+function TabGeneral({ tutelaId }) {
   const [fechaIngreso, setFechaIngreso] = useState("");
   const [termino, setTermino] = useState("");
   const [fechaRespuesta, setFechaRespuesta] = useState("");
+  const { guardarTutela, loading, mensaje, isSuccess } = useTutela();
 
   const [formData, setFormData] = useState({
     accionante: "",
@@ -18,6 +21,8 @@ function TabGeneral() {
     tema: "",
     abogado: "",
   });
+
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     if (fechaIngreso && termino) {
@@ -33,9 +38,22 @@ function TabGeneral() {
     setFormData((f) => ({ ...f, [name]: value }));
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+      console.log("📌 Enviando formulario:", { ...formData, fechaIngreso, termino, fechaRespuesta });
+
+    await guardarTutela(
+      { ...formData, fechaIngreso, termino, fechaRespuesta },
+      tutelaId
+    );
+    setShowPopup(true);
+
+    setTimeout(() => setShowPopup(false), 3000);
+  };
+
   return (
     <div className="tabs">
-      <form className="tabs_form">
+      <form className="tabs_form" onSubmit={handleSubmit}>
         <div className="tabs_date">
           <DateInput
             value={fechaIngreso}
@@ -46,7 +64,6 @@ function TabGeneral() {
           <SelectTermino
             value={termino}
             onChange={(e) => setTermino(e.target.value)}
-           
           />
 
           <DateInput
@@ -78,7 +95,7 @@ function TabGeneral() {
             placeholder="Despacho"
             className="tabs_inputs"
           />
-              <TextInput
+          <TextInput
             name="tema"
             value={formData.tema}
             onChange={handleInputChange}
@@ -92,7 +109,6 @@ function TabGeneral() {
             placeholder="Convocatoria"
             className="tabs_inputs"
           />
-      
           <TextInput
             name="abogado"
             value={formData.abogado}
@@ -102,8 +118,16 @@ function TabGeneral() {
           />
         </div>
 
-        < TabsButton />
+        <TabsButton />
       </form>
+
+      {/* Popup condicional */}
+      {showPopup && (
+        <InfoToolTip
+          isSuccess={isSuccess}
+          errorMessage={mensaje || (isSuccess ? "Guardado con éxito" : "Ocurrió un error")}
+        />
+      )}
     </div>
   );
 }

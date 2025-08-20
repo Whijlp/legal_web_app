@@ -1,6 +1,16 @@
 const mongoose2 = require('mongoose');
+require("./abogado.model");
+require("./accionante.model");
+require("./despacho.model");
+require("./impugnacion.model");
+require("./falloPrimera.model");
+require("./falloSegunda.model");
+require("./incidentesDesacato.models");
+require("./otrosRequerimiento.model");
+
+
 const tutelaSchema = new mongoose2.Schema({
-  radicado: { type: String, required: true, unique: true },
+  radicado: { type: String, required: true},
   accionante: { type: mongoose2.Schema.Types.ObjectId, ref: 'Accionante' },
   radicado_accionante: { type: String },
   despacho: { type: mongoose2.Schema.Types.ObjectId, ref: 'Despacho' },

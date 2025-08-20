@@ -1,73 +1,141 @@
 import { useState } from "react";
 import TabContainer from "./TabContainer/TabContainer";
-
+import ResultadosBusqueda from "./ResultadosBusqueda";
 
 function IngresarRegistros() {
   const [showTab, setShowTab] = useState(false);
   const [busquedaNombre, setBusquedaNombre] = useState("");
   const [busquedaRadicado, setBusquedaRadicado] = useState("");
+  const [resultados, setResultados] = useState([]);
+  const [mensaje, setMensaje] = useState("");
+  const [registroSeleccionado, setRegistroSeleccionado] = useState(null);
 
-  const handleShowTab = (e) => {
-    e.preventDefault();
-    setShowTab(prev => !prev);
-  }
+  // ✅ Buscar por nombre o radicado (reutilizamos función)
+  const buscar = async (campo, valor) => {
+    if (!valor.trim()) return;
+
+    try {
+      const token = localStorage.getItem("token"); // obtenemos token del login
+      if (!token) {
+        setMensaje("⚠️ Debes iniciar sesión para hacer la búsqueda.");
+        return;
+      }
+
+      const res = await fetch(
+        `http://localhost:5000/api/tutelas?${campo}=${valor}`,
+        {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (res.status === 401) {
+        setMensaje("❌ Sesión expirada, vuelve a iniciar sesión.");
+        return;
+      }
+
+      const data = await res.json();
+
+      if (data.length > 0) {
+        setResultados(data);
+        setMensaje("");
+      } else {
+        setResultados([]);
+        setMensaje(`No se encontraron registros relacionados con el ${campo}.`);
+      }
+    } catch (error) {
+      console.error("Error en la búsqueda:", error);
+      setMensaje("❌ Ocurrió un error en la búsqueda.");
+    }
+  };
+
+  const handleSeleccionar = (registro) => {
+    setRegistroSeleccionado(registro);
+    setShowTab(true); // 👉 abre los tabs con ese registro cargado
+  };
+
+  const handleCrearNuevo = () => {
+    setRegistroSeleccionado(null); // 👉 sin datos previos
+    setShowTab(true);
+  };
 
   return (
     <div className="registros">
-      
-      
-     {!showTab ? (
-      <>
-        <h1 className="registros_title">Ingresar y modificar Registros</h1>
-        <form className="registros_form">
-          <div className="registros_form-group">
-            <input
-              className="registros_form-item"
-              type="text"
-              id="nombre"
-              name="nombre"
-              placeholder="Buscar accionante"
-              value={busquedaNombre}
-              onChange={(e) => setBusquedaNombre(e.target.value)}
-            />
-            <button className="registros_form-button" type="button" id="nombre_button">Buscar</button>
-          </div>
-          <div>
-            <input
-              className="registros_form-item"
-              type="text"
-              id="radicado"
-              name="radicado"
-              placeholder="Buscar por número radicado"
-              value={busquedaRadicado}
-              onChange={(e) => setBusquedaRadicado(e.target.value)}
-            />
-            <button className="registros_form-button" type="button" id="radicado_button">Buscar</button>
-          </div>
+      {!showTab ? (
+        <>
+          <h1 className="registros_title">Ingresar y modificar Registros</h1>
+          <form className="registros_form">
+            <div className="registros_form-group">
+              <input
+                className="registros_form-item"
+                type="text"
+                id="nombre"
+                name="nombre"
+                placeholder="Buscar accionante"
+                value={busquedaNombre}
+                onChange={(e) => setBusquedaNombre(e.target.value)}
+              />
+              <button
+                className="registros_form-button"
+                type="button"
+                onClick={() => buscar("nombre", busquedaNombre)}
+              >
+                Buscar
+              </button>
+            </div>
 
+            <div>
+              <input
+                className="registros_form-item"
+                type="text"
+                id="radicado"
+                name="radicado"
+                placeholder="Buscar por número radicado"
+                value={busquedaRadicado}
+                onChange={(e) => setBusquedaRadicado(e.target.value)}
+              />
+              <button
+                className="registros_form-button"
+                type="button"
+                onClick={() => buscar("radicado", busquedaRadicado)}
+              >
+                Buscar
+              </button>
+            </div>
+
+            <button
+              type="button"
+              className="registros_form-button crear_registro"
+              onClick={handleCrearNuevo}
+            >
+              Crear registro
+            </button>
+          </form>
+
+          {/* Resultados o mensaje */}
+          {mensaje && <p className="mensaje">{mensaje}</p>}
+          {resultados.length > 0 && (
+            <ResultadosBusqueda
+              resultados={resultados}
+              onSeleccionar={handleSeleccionar}
+            />
+          )}
+        </>
+      ) : (
+        <>
+          <TabContainer registro={registroSeleccionado} />
           <button
             type="button"
-            className="registros_form-button crear_registro"
-            onClick={handleShowTab}
+            className="registros_form-button cerrar_registro"
+            onClick={() => setShowTab(false)}
           >
-            Crear registros
+            Cerrar
           </button>
-        </form>
-      </>
-    ) : (
-      <>
-      <TabContainer />
-        <button
-          type="button"
-          className="registros_form-button cerrar_registro"
-          onClick={handleShowTab}
-        >
-          Cerrar
-        </button>
-        
-      </>
-    )}
+        </>
+      )}
     </div>
   );
-}""
+}
+
 export default IngresarRegistros;

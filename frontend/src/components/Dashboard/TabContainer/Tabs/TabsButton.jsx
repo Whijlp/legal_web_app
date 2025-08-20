@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 function BotonGuardar({ onClick, texto = "Guardar", disabled = false }) {
   return (
     <button
-      type="button"
+      type="submit"
       className="registros_form-button"
       onClick={onClick}
       disabled={disabled}
