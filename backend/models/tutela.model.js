@@ -11,12 +11,12 @@ require("./otrosRequerimiento.model");
 
 const tutelaSchema = new mongoose2.Schema({
   radicado: { type: String, required: true},
-  accionante: { type: mongoose2.Schema.Types.ObjectId, ref: 'Accionante' },
+  accionante: { type: mongoose2.Schema.Types.ObjectId, ref: 'Accionante',required: true },
   radicado_accionante: { type: String },
-  despacho: { type: mongoose2.Schema.Types.ObjectId, ref: 'Despacho' },
+  despacho: { type: mongoose2.Schema.Types.ObjectId, ref: 'Despacho',required: true },
   tema_general: { type: String },
   tema_especifico: { type: String },
-  abogado: { type: mongoose2.Schema.Types.ObjectId, ref: 'Abogado' },
+  abogado: { type: mongoose2.Schema.Types.ObjectId, ref: 'Abogado',required: true },
   fallo_1_instancia: { type: mongoose2.Schema.Types.ObjectId, ref: 'FalloPrimera' },
   impugnacion: { type: mongoose2.Schema.Types.ObjectId, ref: 'Impugnacion' },
   fallo_2_instancia: { type: mongoose2.Schema.Types.ObjectId, ref: 'FalloSegunda' },

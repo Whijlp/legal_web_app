@@ -10,12 +10,11 @@ function IngresarRegistros() {
   const [mensaje, setMensaje] = useState("");
   const [registroSeleccionado, setRegistroSeleccionado] = useState(null);
 
-  // ✅ Buscar por nombre o radicado (reutilizamos función)
   const buscar = async (campo, valor) => {
     if (!valor.trim()) return;
 
     try {
-      const token = localStorage.getItem("token"); // obtenemos token del login
+      const token = localStorage.getItem("token");
       if (!token) {
         setMensaje("⚠️ Debes iniciar sesión para hacer la búsqueda.");
         return;
@@ -25,7 +24,7 @@ function IngresarRegistros() {
         `http://localhost:5000/api/tutelas?${campo}=${valor}`,
         {
           headers: {
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -113,7 +112,6 @@ function IngresarRegistros() {
             </button>
           </form>
 
-          {/* Resultados o mensaje */}
           {mensaje && <p className="mensaje">{mensaje}</p>}
           {resultados.length > 0 && (
             <ResultadosBusqueda

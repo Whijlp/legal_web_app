@@ -20,10 +20,13 @@ function Login() {
     setIsSuccess(exito);
     setTooltipVisible(true);
 
-    setTimeout(() => {
-      setTooltipVisible(false);
-      if (redirigir) navigate("/inicio");
-    }, exito ? 2000 : 3000);
+    setTimeout(
+      () => {
+        setTooltipVisible(false);
+        if (redirigir) navigate("/inicio");
+      },
+      exito ? 2000 : 3000
+    );
   };
 
   const handleLogin = async (e) => {
@@ -35,21 +38,21 @@ function Login() {
     }
 
     try {
-  
       const res = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({  nombre, password }),
+        body: JSON.stringify({ nombre, password }),
       });
 
       if (!res.ok) {
-      const errorData = await res.json();
-      throw new Error(errorData.message || "Error desconocido");
-    }
-
+        const errorData = await res.json();
+        throw new Error(errorData.message || "Error desconocido");
+      }
 
       const data = await res.json();
-      login({ nombre, token: data.token });
+      if (res.ok) {
+        login({ ...data.user, token: data.token });
+      }
 
       mostrarTooltip(`¡Bienvenido, ${nombre}!`, true, true);
     } catch (error) {
@@ -62,20 +65,22 @@ function Login() {
       <h1 className="login_title">Datos de usuario</h1>
       <form className="login-form" onSubmit={handleLogin}>
         <input
-        name="nombre"
-        className="login_input-name"
+          name="nombre"
+          className="login_input-name"
           type="text"
           placeholder="nombre de usuario"
           onChange={(e) => setNombre(e.target.value)}
         />
         <input
-        name="password"
-        className="login_input-name"
+          name="password"
+          className="login_input-name"
           type="password"
           placeholder="contraseña"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button  className="login_button" type="submit">Login</button>
+        <button className="login_button" type="submit">
+          Login
+        </button>
         <p className="login_text">
           ¿No tienes cuenta? <Link to="/auth/register">Regístrate</Link>
         </p>
@@ -83,7 +88,9 @@ function Login() {
 
       {tooltipVisible && (
         <Popup
-          message={<InfoToolTip isSuccess={isSuccess} errorMessage={errorMessage} />}
+          message={
+            <InfoToolTip isSuccess={isSuccess} errorMessage={errorMessage} />
+          }
           onClose={() => setTooltipVisible(false)}
         />
       )}
