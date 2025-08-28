@@ -1,4 +1,7 @@
 const mongoose2 = require('mongoose');
+require("./termino.model")
+require("./temaEspecifico.model");
+require("./convocatoria.model");
 require("./abogado.model");
 require("./accionante.model");
 require("./despacho.model");
@@ -10,20 +13,20 @@ require("./otrosRequerimiento.model");
 
 
 const tutelaSchema = new mongoose2.Schema({
+  termino: { type: mongoose2.Schema.Types.ObjectId, ref: 'Termino', required: true },
   radicado: { type: String, required: true},
   accionante: { type: mongoose2.Schema.Types.ObjectId, ref: 'Accionante',required: true },
   radicado_accionante: { type: String },
   despacho: { type: mongoose2.Schema.Types.ObjectId, ref: 'Despacho',required: true },
-  tema_general: { type: String },
-  tema_especifico: { type: String },
+  convocatoria: { type: mongoose2.Schema.Types.ObjectId, ref: 'Convocatoria', required: true },
+  temaEspecifico: {type: mongoose2.Schema.Types.ObjectId, ref: 'TemaEspecifico', required: true },
   abogado: { type: mongoose2.Schema.Types.ObjectId, ref: 'Abogado',required: true },
   fallo_1_instancia: { type: mongoose2.Schema.Types.ObjectId, ref: 'FalloPrimera' },
   impugnacion: { type: mongoose2.Schema.Types.ObjectId, ref: 'Impugnacion' },
   fallo_2_instancia: { type: mongoose2.Schema.Types.ObjectId, ref: 'FalloSegunda' },
-  incidente_desacato: { type: mongoose2.Schema.Types.ObjectId, ref: 'IncidenteDesacato' },
-  fallo_incidente: { type: mongoose2.Schema.Types.ObjectId, ref: 'FalloPrimera' },
-  revision_corte: { type: mongoose2.Schema.Types.ObjectId, ref: 'RevisionCorte' },
-  otras_notificaciones: [{ type: mongoose2.Schema.Types.ObjectId, ref: 'OtrasNotificaciones' }],
+  incidentesDesacato: { type: mongoose2.Schema.Types.ObjectId, ref: 'IncidenteDesacato' },
+  revisionCorte: { type: mongoose2.Schema.Types.ObjectId, ref: 'RevisionCorte' },
+  otrasNotificaciones: [{ type: mongoose2.Schema.Types.ObjectId, ref: 'OtrasNotificaciones' }],
   createdBy: { type: mongoose2.Schema.Types.ObjectId, ref: 'Usuario' },
 }, { timestamps: true });
 module.exports = mongoose2.model('Tutela', tutelaSchema);

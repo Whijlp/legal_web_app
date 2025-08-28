@@ -10,7 +10,7 @@ import InfoToolTip from "../../../popup/InfoToolTip";
 function TabGeneral({ tutelaId }) {
   const [fechaIngreso, setFechaIngreso] = useState("");
   const [termino, setTermino] = useState("");
-  const [fechaRespuesta, setFechaRespuesta] = useState("");
+  const [fechaVencimiento, setFechaVencimiento] = useState("");
   const { guardarTutela, loading, mensaje, isSuccess } = useTutela();
 
   const [formData, setFormData] = useState({
@@ -18,8 +18,9 @@ function TabGeneral({ tutelaId }) {
     radicado: "",
     despacho: "",
     convocatoria: "",
-    tema: "",
+    temaEspecifico: "",
     abogado: "",
+    termino: "",
   });
 
   const [showPopup, setShowPopup] = useState(false);
@@ -27,11 +28,24 @@ function TabGeneral({ tutelaId }) {
   useEffect(() => {
     if (fechaIngreso && termino) {
       const vencimiento = sumarDiasHabiles(fechaIngreso, parseInt(termino));
-      setFechaRespuesta(vencimiento);
+      setFechaVencimiento(vencimiento);
     } else {
-      setFechaRespuesta("");
+      setFechaVencimiento("");
     }
   }, [fechaIngreso, termino]);
+
+
+{  /*useEffect(() => {
+  if (fechaIngreso && termino) {
+    const vencimiento = sumarDiasHabiles(fechaIngreso, parseInt(termino));
+
+    const fechaISO = vencimiento
+    setFechaRespuesta(fechaISO);
+  } else {
+    setFechaRespuesta("");
+  }
+}, [fechaIngreso, termino]);
+*/}
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -40,17 +54,34 @@ function TabGeneral({ tutelaId }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-      console.log("📌 Enviando formulario:", { ...formData, fechaIngreso, termino, fechaRespuesta });
 
-    await guardarTutela(
-      { ...formData, fechaIngreso, termino, fechaRespuesta },
-      tutelaId
-    );
+    if (!fechaIngreso || !termino || !fechaVencimiento) {
+      setShowPopup(true);
+      setTimeout(() => setShowPopup(false), 3000);
+      return;
+    }
+    if (!formData.accionante || !formData.radicado || !formData.despacho || !formData.convocatoria || !formData.temaEspecifico || !formData.abogado) {
+      setShowPopup(true);
+      setTimeout(() => setShowPopup(false), 3000);
+      return;
+    }
+    const dataToSend = {
+      ...formData,
+      fechaIngreso,
+      termino,
+      fechaVencimiento, 
+      fallo_1_instancia: null,
+      fallo_2_instancia: null,
+      incidentesDesacato: null,
+    };
+
+    console.log("📌 Enviando formulario:", dataToSend);
+    console.log("Estados antes de enviar:", { fechaIngreso, termino, fechaVencimiento, formData });
+
+    await guardarTutela(dataToSend, tutelaId);
     setShowPopup(true);
-
     setTimeout(() => setShowPopup(false), 3000);
   };
-
   return (
     <div className="tabs">
       <form className="tabs_form" onSubmit={handleSubmit}>
@@ -67,9 +98,9 @@ function TabGeneral({ tutelaId }) {
           />
 
           <DateInput
-            value={fechaRespuesta}
+            value={fechaVencimiento}
             readOnly
-            placeholder="Fecha de respuesta"
+            placeholder="Fecha de vencimiento"
           />
         </div>
 
@@ -96,13 +127,13 @@ function TabGeneral({ tutelaId }) {
             className="tabs_inputs"
           />
           <TextInput
-            name="tema"
-            value={formData.tema}
+            name="temaEspecifico"
+            value={formData.temaEspecifico}
             onChange={handleInputChange}
             placeholder="Tema específico"
             className="tabs_inputs"
           />
-          <TextInput
+          <TextInput  
             name="convocatoria"
             value={formData.convocatoria}
             onChange={handleInputChange}

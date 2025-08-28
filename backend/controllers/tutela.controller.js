@@ -3,16 +3,19 @@ const Usuario = require("../models/usuario.model");
 const Despacho = require("../models/despacho.model");
 const Abogado = require("../models/abogado.model");
 const Accionante = require("../models/accionante.model");
+const Termino = require("../models/termino.model");
+const TemaEspecifico = require("../models/temaEspecifico.model");
+const Convocatoria = require("../models/convocatoria.model");
 const cleanRef = require("../utils/cleanRef");
 
 const getIdFromName = async (Model, value) => {
   if (!value) return null;
   if (value.match(/^[0-9a-fA-F]{24}$/)) return value;
-  const doc = await Model.findOne({ nombre: value.trim() });
+
+  let doc = await Model.findOne({ nombre: value.trim() });
   if (!doc) {
     doc = await Model.create({ nombre: value.trim() });
   }
-
   return doc._id;
 };
 
@@ -22,21 +25,59 @@ exports.createTutela = async (req, res) => {
       return res.status(401).json({ message: "Usuario no autenticado" });
     }
 
+    const { fechaIngreso, fechaVencimiento, termino, radicado, accionante, despacho, convocatoria, temaEspecifico, abogado } = req.body;
+
+    if (!fechaIngreso || !fechaVencimiento || !termino) {
+      return res.status(400).json({
+        message: "Los campos fechaIngreso, fechaVencimiento y termino son obligatorios para Termino",
+      });
+    }
+
+
+    const fechaIngresoDate = new Date(fechaIngreso);
+    const fechaVencimientoDate = new Date(fechaVencimiento);
+    if (isNaN(fechaIngresoDate) || isNaN(fechaVencimientoDate)) {
+      return res.status(400).json({
+        message: "Las fechas proporcionadas (fechaIngreso o fechaVencimiento) no son válidas",
+      });
+    }
+
+
+    if (!radicado || !accionante || !despacho || !convocatoria || !temaEspecifico || !abogado) {
+      return res.status(400).json({
+        message: "Los campos radicado, accionante, despacho, convocatoria, temaEspecifico y abogado son obligatorios para Tutela",
+      });
+    }
+
+
+    const terminoDoc = new Termino({
+      fechaIngreso: fechaIngresoDate,
+      fechaVencimiento: fechaVencimientoDate,
+      termino,
+    });
+    await terminoDoc.save();
+
+
     const data = {
       ...req.body,
-      accionante: await getIdFromName(Accionante, req.body.accionante),
-      despacho: await getIdFromName(Despacho, req.body.despacho),
-      abogado: await getIdFromName(Abogado, req.body.abogado),
+      accionante: await getIdFromName(Accionante, accionante),
+      temaEspecifico: await getIdFromName(TemaEspecifico, temaEspecifico),
+      convocatoria: await getIdFromName(Convocatoria, convocatoria),
+      despacho: await getIdFromName(Despacho, despacho),
+      abogado: await getIdFromName(Abogado, abogado),
       fallo_1_instancia: cleanRef(req.body.fallo_1_instancia),
       fallo_2_instancia: cleanRef(req.body.fallo_2_instancia),
-      incidente_desacato: cleanRef(req.body.incidente_desacato),
+      incidentesDesacato: cleanRef(req.body.incidentesDesacato),
+      termino: terminoDoc._id,
       createdBy: req.user._id,
     };
+
     const nueva = new Tutela(data);
     await nueva.save();
 
+
     const populated = await Tutela.findById(nueva._id).populate(
-      "accionante despacho abogado fallo_1_instancia fallo_2_instancia incidente_desacato"
+      "accionante temaEspecifico convocatoria termino despacho abogado fallo_1_instancia fallo_2_instancia incidentesDesacato"
     );
 
     res.status(201).json(populated);
@@ -54,12 +95,12 @@ exports.getTutelas = async (req, res) => {
     const query = {};
 
     if (req.query.radicado) {
-      query.radicado = new RegExp(req.query.radicado, "i"); // búsqueda parcial
+      query.radicado = new RegExp(req.query.radicado, "i");
     }
 
     if (req.query.accionante) {
       const id = await getIdFromName(Usuario, req.query.accionante);
-      if (id) query.accionante = id; // ✅ solo agrega si existe
+      if (id) query.accionante = id; 
     }
 
     if (req.query.despacho) {
@@ -73,7 +114,7 @@ exports.getTutelas = async (req, res) => {
     }
 
     const tutelas = await Tutela.find(query).populate(
-      "accionante despacho abogado fallo_1_instancia fallo_2_instancia incidente_desacato"
+      "accionante temaEspecifico convocatoria termino despacho abogado fallo_1_instancia fallo_2_instancia incidentesDesacato"
     );
 
     res.json(tutelas);
@@ -112,7 +153,7 @@ exports.updateTutela = async (req, res) => {
     const updated = await Tutela.findByIdAndUpdate(req.params.id, data, {
       new: true,
     }).populate(
-      "accionante despacho abogado fallo_1_instancia fallo_2_instancia incidente_desacato"
+      "accionante temaEspecifico convocatoria termino despacho abogado fallo_1_instancia fallo_2_instancia incidentesDesacato"
     );
 
     if (!updated) return res.status(404).json({ message: "No encontrado" });

@@ -16,6 +16,10 @@ export function useTutela() {
     setIsSuccess(false);
 
     try {
+      console.log("Payload antes de JSON.stringify:", datos);
+      const body = JSON.stringify(datos);
+      console.log("Cuerpo de la solicitud (JSON):", body);
+
       const token = user?.token;
       if (!token) throw new Error("No hay token de autenticación");
 
@@ -30,18 +34,20 @@ export function useTutela() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(datos),
+        body,
       });
 
+      const result = await res.json();
+
       if (!res.ok) {
-        const errorData = await res.json().catch(() => ({}));
-        throw new Error(errorData.message || "Error al guardar tutela");
+        throw new Error(result.message || "Error al guardar tutela");
       }
 
       setMensaje("Tutela guardada con éxito");
       setIsSuccess(true);
-      return await res.json();
+      return result;
     } catch (err) {
+      console.error("Error en guardarTutela:", err);
       setError(err.message);
       setMensaje(err.message);
       setIsSuccess(false);
