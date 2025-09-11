@@ -20,14 +20,21 @@ const getIdFromName = async (Model, value) => {
 };
 
 exports.createTutela = async (req, res) => {
+  console.log("👉 Entró al controlador CREATE TUTELA con body:", req.body);
+
   try {
+
+    console.log('Datos recibidos en req.body:', JSON.stringify(req.body, null, 2));
+    console.log('Headers de la solicitud:', req.headers);
     if (!req.user) {
+
       return res.status(401).json({ message: "Usuario no autenticado" });
     }
 
-    const { fechaIngreso, fechaVencimiento, termino, radicado, accionante, despacho, convocatoria, temaEspecifico, abogado } = req.body;
+    const {     fechaIngreso, fechaVencimiento, termino, radicado, accionante, despacho, convocatoria, temaEspecifico, abogado } = req.body;
 
     if (!fechaIngreso || !fechaVencimiento || !termino) {
+      console.log('Campos faltantes para Termino:', { fechaIngreso, fechaVencimiento, termino });
       return res.status(400).json({
         message: "Los campos fechaIngreso, fechaVencimiento y termino son obligatorios para Termino",
       });
@@ -37,6 +44,7 @@ exports.createTutela = async (req, res) => {
     const fechaIngresoDate = new Date(fechaIngreso);
     const fechaVencimientoDate = new Date(fechaVencimiento);
     if (isNaN(fechaIngresoDate) || isNaN(fechaVencimientoDate)) {
+      console.log('Fechas inválidas:', { fechaIngreso, fechaVencimiento });
       return res.status(400).json({
         message: "Las fechas proporcionadas (fechaIngreso o fechaVencimiento) no son válidas",
       });
@@ -44,6 +52,7 @@ exports.createTutela = async (req, res) => {
 
 
     if (!radicado || !accionante || !despacho || !convocatoria || !temaEspecifico || !abogado) {
+      console.log('Campos faltantes para Tutela:', { radicado, accionante, despacho, convocatoria, temaEspecifico, abogado });
       return res.status(400).json({
         message: "Los campos radicado, accionante, despacho, convocatoria, temaEspecifico y abogado son obligatorios para Tutela",
       });
@@ -100,7 +109,7 @@ exports.getTutelas = async (req, res) => {
 
     if (req.query.accionante) {
       const id = await getIdFromName(Usuario, req.query.accionante);
-      if (id) query.accionante = id; 
+      if (id) query.accionante = id;
     }
 
     if (req.query.despacho) {

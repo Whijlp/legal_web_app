@@ -12,22 +12,25 @@
 }
 
 .tabs_date{
+
   width: 100%;
   display: flex;
   justify-content: space-around;
   padding-top: 30px;
 }
 
-.tabs_termino{   
+.tabs_termino{  
+margin-top: 15px;
   height: 36px;
   border-radius: 5px;
   background-color: #a8a8a83f;
   border: 1px solid #ccc;
- width: 100px;
+
 }
 
 .tabs_date-input{
-    padding: auto   ;
+  display: flex;
+width: 100%;
   margin: auto;
   height: 36px;
   border-radius: 5px;

@@ -51,11 +51,11 @@ function IngresarRegistros() {
 
   const handleSeleccionar = (registro) => {
     setRegistroSeleccionado(registro);
-    setShowTab(true); // 👉 abre los tabs con ese registro cargado
+    setShowTab(true);
   };
 
   const handleCrearNuevo = () => {
-    setRegistroSeleccionado(null); // 👉 sin datos previos
+    setRegistroSeleccionado(null)
     setShowTab(true);
   };
 

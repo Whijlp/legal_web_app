@@ -1,8 +1,9 @@
+import { useContext } from "react";
+import { TabsContext } from "../../../../utils/TabsContext";
 import FalloInstancia from "./FalloInstancia";
-import {useTabs} from "../../../../utils/TabsContext";
 
 function TabFallos() {
-  const { datosTabs, handleGuardarTab } = useTabs();
+  const { datosTabs, handleGuardarTab } = useContext(TabsContext);
 
   return (
     <div>
@@ -13,10 +14,10 @@ function TabFallos() {
           "Niega",
           "Concede no Ordena",
           "Declara improcedente",
-          "Desistimiento de la accion ",
+          "Desistimiento de la acción",
         ]}
-        registroGuardado={datosTabs.falloInstancia}
-        onGuardar={(datos) => handleGuardarTab("falloInstancia", datos)}
+        registroGuardado={datosTabs.fallos?.fallo_1_instancia || {}}
+        onGuardar={(datos) => handleGuardarTab("fallos", { ...datosTabs.fallos, fallo_1_instancia: datos })}
       />
       <FalloInstancia
         titulo="Fallo de 2° instancia"
@@ -25,10 +26,10 @@ function TabFallos() {
           "Niega",
           "Concede no Ordena",
           "Declara improcedente",
-          "Desistimiento de la accion ",
+          "Desistimiento de la acción",
         ]}
-        registroGuardado={datosTabs.falloInstancia}
-        onGuardar={(datos) => handleGuardarTab("falloInstancia", datos)}
+        registroGuardado={datosTabs.fallos?.fallo_2_instancia || {}}
+        onGuardar={(datos) => handleGuardarTab("fallos", { ...datosTabs.fallos, fallo_2_instancia: datos })}
       />
     </div>
   );

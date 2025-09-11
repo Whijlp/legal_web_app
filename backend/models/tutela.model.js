@@ -16,7 +16,6 @@ const tutelaSchema = new mongoose2.Schema({
   termino: { type: mongoose2.Schema.Types.ObjectId, ref: 'Termino', required: true },
   radicado: { type: String, required: true},
   accionante: { type: mongoose2.Schema.Types.ObjectId, ref: 'Accionante',required: true },
-  radicado_accionante: { type: String },
   despacho: { type: mongoose2.Schema.Types.ObjectId, ref: 'Despacho',required: true },
   convocatoria: { type: mongoose2.Schema.Types.ObjectId, ref: 'Convocatoria', required: true },
   temaEspecifico: {type: mongoose2.Schema.Types.ObjectId, ref: 'TemaEspecifico', required: true },

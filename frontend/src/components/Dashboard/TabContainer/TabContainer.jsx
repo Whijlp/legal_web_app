@@ -8,14 +8,16 @@ function TabContainer() {
   const navigate = useNavigate();
   const location = useLocation();
   const [datosTabs, setDatosTabs] = useState({
-  falloInstancia: null,
-  notificacion: null,
-
+    general: {},
+  fallos: {},
+  apelacion: {},
+  incidentes: {},
+  otros: {},
 });
 const handleGuardarTab = (nombreTab, nuevosDatos) => {
   setDatosTabs((prev) => ({
     ...prev,
-    [nombreTab]: nuevosDatos,
+    [nombreTab]: {...prev[nombreTab], ...nuevosDatos },
   }));
   console.log(`Guardado ${nombreTab}:`, nuevosDatos);
 };
