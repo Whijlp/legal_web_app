@@ -267,7 +267,7 @@ exports.updateTutela = async (req, res) => {
       data.falloSegunda = null;
     }
 
-   
+
     if (isValidObject(data.incidentesDesacato)) {
       let incidenteDesacatoDoc = await IncidenteDesacato.findOneAndUpdate(
         { _id: data.incidentesDesacato._id },
@@ -296,24 +296,24 @@ exports.updateTutela = async (req, res) => {
       data.impugnacion = null;
     }
 
-    if (isValidObject(data.otrosRequerimientos)) {
+    if (isValidObject(data.otrasNotificaciones)) {
       let otrasNotificacionesDoc = await OtrasNotificaciones.findOneAndUpdate(
-        { _id: data.otrosRequerimientos._id },
+        { _id: data.otrasNotificaciones._id },
         {
-          otras_notificaciones: data.otrosRequerimientos.otras_notificaciones,
-          fecha_notificacion: data.otrosRequerimientos.fecha_notificacion ? new Date(data.otrosRequerimientos.fecha_notificacion) : null,
+          otras_notificaciones: data.otrasNotificaciones.otras_notificaciones,
+          fecha_notificacion: data.otrasNotificaciones.fecha_notificacion ? new Date(data.otrasNotificaciones.fecha_notificacion) : null,
         },
         { new: true, upsert: true }
       );
-      data.otrosRequerimientos = otrasNotificacionesDoc._id;
-    } else if (data.otrosRequerimientos === null || data.otrosRequerimientos === undefined) {
-      data.otrosRequerimientos = null;
+      data.otrasNotificaciones = otrasNotificacionesDoc._id;
+    } else if (data.otrasNotificaciones === null || data.otrasNotificaciones === undefined) {
+      data.otrasNotificaciones = null;
     }
 
     const updatedTutela = await Tutela.findByIdAndUpdate(tutelaId, data, {
       new: true,
     }).populate(
-      "accionante despacho convocatoria temaEspecifico abogado falloPrimera falloSegunda incidentesDesacato impugnacion otrosRequerimientos termino createdBy"
+      "accionante despacho convocatoria temaEspecifico abogado falloPrimera falloSegunda incidentesDesacato impugnacion otrasNotificaciones termino createdBy"
     );
 
     if (!updatedTutela) {

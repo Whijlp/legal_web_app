@@ -15,7 +15,7 @@ function TabContainer({ registro }) {
     otros: {},
   });
 
-  // Función para inicializar datosTabs con el registro
+  
   const handleGuardarTab = (nombreTab, nuevosDatos) => {
     setDatosTabs((prev) => ({
       ...prev,
@@ -24,10 +24,10 @@ function TabContainer({ registro }) {
     console.log(`Guardado ${nombreTab}:`, nuevosDatos);
   };
 
-  // Sincronizar datosTabs con el registro al montar o cambiar
+
   useEffect(() => {
     if (registro) {
-      console.log("Inicializando datosTabs con registro:", registro); // Depuración
+      console.log("Inicializando datosTabs con registro:", registro); 
       setDatosTabs((prev) => ({
         ...prev,
         general: {

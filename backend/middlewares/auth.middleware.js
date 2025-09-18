@@ -3,10 +3,10 @@ const Usuario = require('../models/usuario.model');
 
 const auth = async (req, res, next) => {
   const authHeader = req.headers.authorization;
-    console.log("🔑 [AUTH] Header recibido:", authHeader);
+    console.log(" [AUTH] Header recibido:", authHeader);
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        console.log("❌ [AUTH] No se envió token");
+        console.log(" [AUTH] No se envió token");
 
     return res.status(401).json({ message: 'Token requerido' });
   }
@@ -16,10 +16,10 @@ const auth = async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        console.log("✅ [AUTH] Token decodificado:", decoded);
+        console.log(" [AUTH] Token decodificado:", decoded);
 
     const user = await Usuario.findById(decoded.id).select('-password');
-        console.log("👤 [AUTH] Usuario encontrado:", user?.email, "Rol:", user?.role);
+        console.log(" [AUTH] Usuario encontrado:", user?.email, "Rol:", user?.role);
 
     if (!user) return res.status(401).json({ message: 'Usuario no encontrado' });
     req.user = user;
