@@ -9,7 +9,7 @@ const { createTutelaSchema } = require('../validations/tutela.validation');
 router.get('/', auth, permit('admin','notificador','consultor'), tutelaController.getTutelas);
 router.post('/', auth, permit('admin','notificador','consultor'), validate(createTutelaSchema), tutelaController.createTutela);
 router.get('/:id', auth, permit('admin','notificador','consultor'), tutelaController.getTutelaById);
-router.put('/:id', auth, permit('admin','notificador'), tutelaController.updateTutela);
-router.delete('/:id', auth, permit('admin'), tutelaController.deleteTutela);
+router.put('/:id', auth, permit('admin','notificador','consultor'), tutelaController.updateTutela);
+router.delete('/:id', auth, permit('admin','notificador','consultor'), tutelaController.deleteTutela);
 
 module.exports = router;

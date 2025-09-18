@@ -4,18 +4,23 @@ import SelectField from "../../../../utils/SelectField";
 import DateInput from "../../../../utils/DateInput";
 import SelectTermino from "../../../../utils/SelecTermino";
 import TabsButton from "../Tabs/TabsButton";
+
 function FalloInstancia({ titulo, falloOptions, registroGuardado, onGuardar }) {
   const esActualizar =
     registroGuardado && Object.keys(registroGuardado).length > 0;
 
-  const [fechaEntrada, setFechaEntrada] = useState("");
-  const [fallo, setFallo] = useState("");
-  const [termino, setTermino] = useState("");
-  const [fechaVencimiento, setFechaVencimiento] = useState("");
+  const [fechaEntrada, setFechaEntrada] = useState(
+    registroGuardado?.fechaEntrada || ""
+  );
+  const [fallo, setFallo] = useState(registroGuardado?.fallo || "");
+  const [termino, setTermino] = useState(registroGuardado?.termino || "");
+  const [fechaVencimiento, setFechaVencimiento] = useState(
+    registroGuardado?.fechaVencimiento || ""
+  );
 
   const esConcede = fallo === "Concede";
 
-    useEffect(() => {
+  useEffect(() => {
     if (esActualizar) {
       setFechaEntrada(registroGuardado.fechaEntrada || "");
       setFallo(registroGuardado.fallo || "");
@@ -28,7 +33,7 @@ function FalloInstancia({ titulo, falloOptions, registroGuardado, onGuardar }) {
     if (fechaEntrada && termino && esConcede) {
       const vencimiento = sumarDiasHabiles(fechaEntrada, parseInt(termino));
       setFechaVencimiento(vencimiento);
-    } else {
+    } else if (!esConcede) {
       setFechaVencimiento("");
     }
   }, [fechaEntrada, termino, fallo]);
@@ -40,8 +45,30 @@ function FalloInstancia({ titulo, falloOptions, registroGuardado, onGuardar }) {
       termino: esConcede ? termino : "",
       fechaVencimiento: esConcede ? fechaVencimiento : "",
     };
+    if (onGuardar) {
+      onGuardar(datos);
+    }
+  };
 
-    onGuardar(datos);
+  const handleFalloChange = (e) => {
+    if (!e || !e.target) {
+      console.error("Evento inválido en FalloInstancia:", e);
+      return;
+    }
+    const val = e.target.value;
+    setFallo(val);
+    if (val !== "Concede") {
+      setTermino("");
+      setFechaVencimiento("");
+    }
+  };
+
+  const handleTerminoChange = (e) => {
+    if (!e || !e.target) {
+      console.error("Evento inválido en FalloInstancia:", e);
+      return;
+    }
+    setTermino(e.target.value);
   };
 
   return (
@@ -49,22 +76,15 @@ function FalloInstancia({ titulo, falloOptions, registroGuardado, onGuardar }) {
       <label className="fallo-label">{titulo}</label>
       <div className="fallos_container">
         <DateInput
+          label="Fecha de entrada"
           value={fechaEntrada}
-          onChange={(e) => setFechaEntrada(e.target.value)}
+          onChange={setFechaEntrada}
           className="fallo-input-date"
         />
-
         <SelectField
           label="Fallo:"
           value={fallo}
-          onChange={(e) => {
-            const val = e.target.value;
-            setFallo(val);
-            if (val !== "Concede") {
-              setTermino("");
-              setFechaVencimiento("");
-            }
-          }}
+          onChange={handleFalloChange}
           options={falloOptions}
           className="fallo-select"
         />
@@ -77,17 +97,18 @@ function FalloInstancia({ titulo, falloOptions, registroGuardado, onGuardar }) {
       {esConcede && (
         <div className="fallos_container">
           <SelectTermino
+            label="Término"
             value={termino}
-            onChange={(e) => setTermino(e.target.value)}
+            onChange={handleTerminoChange}
             className="select-mini"
           />
           <DateInput
+            label="Fecha de vencimiento"
             value={fechaVencimiento}
             onChange={() => {}}
             readOnly
             className="tabs_date-input"
           />
-
           <TabsButton
             onClick={handleGuardar}
             texto={esActualizar ? "Actualizar" : "Guardar"}

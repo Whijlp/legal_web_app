@@ -167,19 +167,16 @@ function TabGeneral({ tutelaId }) {
     }
 
     const dataToSend = {
-      accionante: formData.general.accionante,
-      radicado: formData.general.radicado,
-      despacho: formData.general.despacho,
-      convocatoria: formData.general.convocatoria,
-      temaEspecifico: formData.general.temaEspecifico,
-      abogado: formData.general.abogado,
-      fechaIngreso,
-      termino,
-      fechaVencimiento,
-      fallo_1_instancia: null,
-      fallo_2_instancia: null,
-      incidentesDesacato: null,
-    };
+      ...formData.general, // Incluir todos los campos de general
+      fechaIngreso, // Usar el estado local para consistencia
+      termino, // Usar el estado local para consistencia
+      fechaVencimiento, // Usar el estado local para consistencia
+      fallo_1_instancia: formData.fallos?.fallo_1_instancia || null, // Incluir datos de fallos
+      fallo_2_instancia: formData.fallos?.fallo_2_instancia || null, // Incluir datos de fallos
+      apelacion: formData.apelacion || null, // Incluir datos de apelacion
+      incidentesDesacato: formData.incidentes || null, // Incluir datos de incidentes
+      otros: formData.otros || null, // Incluir datos de otros
+    }
 
     console.log("📌 Enviando formulario:", dataToSend);
 

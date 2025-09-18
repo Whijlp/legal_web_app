@@ -11,7 +11,10 @@ function IngresarRegistros() {
   const [registroSeleccionado, setRegistroSeleccionado] = useState(null);
 
   const buscar = async (campo, valor) => {
-    if (!valor.trim()) return;
+    if (!valor.trim()) {
+      setMensaje("⚠️ Ingresa un valor para buscar.");
+      return;
+    }
 
     try {
       const token = localStorage.getItem("token");
@@ -20,8 +23,11 @@ function IngresarRegistros() {
         return;
       }
 
+      const encodedValor = encodeURIComponent(valor.trim());
+      console.log('Buscando:', { campo, valor: encodedValor }); // Depuración
+
       const res = await fetch(
-        `http://localhost:5000/api/tutelas?${campo}=${valor}`,
+        `http://localhost:5000/api/tutelas?${campo}=${encodedValor}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -35,6 +41,7 @@ function IngresarRegistros() {
       }
 
       const data = await res.json();
+      console.log('Resultados de la búsqueda:', data); // Depuración
 
       if (data.length > 0) {
         setResultados(data);
@@ -50,12 +57,13 @@ function IngresarRegistros() {
   };
 
   const handleSeleccionar = (registro) => {
+    console.log("Registro seleccionado:", registro);
     setRegistroSeleccionado(registro);
     setShowTab(true);
   };
 
   const handleCrearNuevo = () => {
-    setRegistroSeleccionado(null)
+    setRegistroSeleccionado(null);
     setShowTab(true);
   };
 
@@ -69,8 +77,8 @@ function IngresarRegistros() {
               <input
                 className="registros_form-item"
                 type="text"
-                id="nombre"
-                name="nombre"
+                id="accionante"
+                name="accionante"
                 placeholder="Buscar accionante"
                 value={busquedaNombre}
                 onChange={(e) => setBusquedaNombre(e.target.value)}
@@ -78,7 +86,7 @@ function IngresarRegistros() {
               <button
                 className="registros_form-button"
                 type="button"
-                onClick={() => buscar("nombre", busquedaNombre)}
+                onClick={() => buscar("accionante", busquedaNombre)}
               >
                 Buscar
               </button>

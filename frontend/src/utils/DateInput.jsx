@@ -9,10 +9,18 @@ function DateInput({
   placeholder = "",
   name,
 }) {
-  // Aseguramos que siempre reciba un string YYYY-MM-DD
-  {
-    /*const formattedValue = value ? formatDate(parseDate(value)) : "";*/
-  }
+ const formattedValue = value ? formatDate(parseDate(value)) : "";
+
+  const handleChange = (e) => {
+    if (!e || !e.target) {
+      console.error("Evento inválido en DateInput:", e);
+      return;
+    }
+    const newValue = e.target.value;
+    if (onChange) {
+      onChange(newValue);
+    }
+  };
 
   return (
     <div className="form-field">
@@ -20,11 +28,9 @@ function DateInput({
       <input
         type="date"
         name={name}
-        value={value || ""}
+        value={formattedValue}
         readOnly={readOnly}
-        onChange={(e) => {
-          onChange(e.target.value);
-        }}
+        onChange={handleChange}
         className={`tabs_date-input ${className}`}
         placeholder={placeholder}
       />

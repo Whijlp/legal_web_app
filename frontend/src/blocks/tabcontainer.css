@@ -1,11 +1,11 @@
 .tabContainer {
   display: flex;
   border-color: #1E3A8A;
-   
-  width: 100%;
+
 } 
 
 .tabContainer_tabs{
+  margin-top: 20px;
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
@@ -29,6 +29,12 @@
 
 }
 
+.tab_construccion{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    color: #1E3A8A;
+}
 
 .pestaña {
   border-style: none;

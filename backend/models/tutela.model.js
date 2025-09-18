@@ -20,12 +20,12 @@ const tutelaSchema = new mongoose2.Schema({
   convocatoria: { type: mongoose2.Schema.Types.ObjectId, ref: 'Convocatoria', required: true },
   temaEspecifico: {type: mongoose2.Schema.Types.ObjectId, ref: 'TemaEspecifico', required: true },
   abogado: { type: mongoose2.Schema.Types.ObjectId, ref: 'Abogado',required: true },
-  fallo_1_instancia: { type: mongoose2.Schema.Types.ObjectId, ref: 'FalloPrimera' },
+  falloPrimera: { type: mongoose2.Schema.Types.ObjectId, ref: 'FalloPrimera' },
   impugnacion: { type: mongoose2.Schema.Types.ObjectId, ref: 'Impugnacion' },
-  fallo_2_instancia: { type: mongoose2.Schema.Types.ObjectId, ref: 'FalloSegunda' },
+  falloSegunda: { type: mongoose2.Schema.Types.ObjectId, ref: 'FalloSegunda' },
   incidentesDesacato: { type: mongoose2.Schema.Types.ObjectId, ref: 'IncidenteDesacato' },
   revisionCorte: { type: mongoose2.Schema.Types.ObjectId, ref: 'RevisionCorte' },
-  otrasNotificaciones: [{ type: mongoose2.Schema.Types.ObjectId, ref: 'OtrasNotificaciones' }],
+  otrosRequerimientos: [{ type: mongoose2.Schema.Types.ObjectId, ref: 'OtrosRequerimientos' }],
   createdBy: { type: mongoose2.Schema.Types.ObjectId, ref: 'Usuario' },
 }, { timestamps: true });
 module.exports = mongoose2.model('Tutela', tutelaSchema);
