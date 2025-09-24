@@ -27,7 +27,6 @@ export function TabsProvider({ children }) {
         ...prev,
         [tabName]: { ...prev[tabName], ...data },
       };
-      console.log('Guardando en TabsContext:', nuevosDatos); // Depuración
       return nuevosDatos;
     });
   };

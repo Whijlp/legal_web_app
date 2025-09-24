@@ -21,13 +21,13 @@ function TabContainer({ registro }) {
       ...prev,
       [nombreTab]: { ...prev[nombreTab], ...nuevosDatos },
     }));
-    console.log(`Guardado ${nombreTab}:`, nuevosDatos);
+   
   };
 
 
   useEffect(() => {
     if (registro) {
-      console.log("Inicializando datosTabs con registro:", registro); 
+     
       setDatosTabs((prev) => ({
         ...prev,
         general: {

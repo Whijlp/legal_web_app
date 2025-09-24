@@ -24,7 +24,6 @@ function IngresarRegistros() {
       }
 
       const encodedValor = encodeURIComponent(valor.trim());
-      console.log('Buscando:', { campo, valor: encodedValor }); // Depuración
 
       const res = await fetch(
         `http://localhost:5000/api/tutelas?${campo}=${encodedValor}`,
@@ -41,7 +40,6 @@ function IngresarRegistros() {
       }
 
       const data = await res.json();
-      console.log('Resultados de la búsqueda:', data); // Depuración
 
       if (data.length > 0) {
         setResultados(data);
@@ -57,7 +55,6 @@ function IngresarRegistros() {
   };
 
   const handleSeleccionar = (registro) => {
-    console.log("Registro seleccionado:", registro);
     setRegistroSeleccionado(registro);
     setShowTab(true);
   };

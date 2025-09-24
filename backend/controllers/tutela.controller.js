@@ -26,14 +26,13 @@ const getIdFromName = async (Model, value) => {
 };
 
 exports.createTutela = async (req, res) => {
-  console.log("👉 Entró al controlador CREATE TUTELA con body:", req.body);
 
   try {
     console.log(
       "Datos recibidos en req.body:",
       JSON.stringify(req.body, null, 2)
     );
-    console.log("Headers de la solicitud:", req.headers);
+
     if (!req.user) {
       return res.status(401).json({ message: "Usuario no autenticado" });
     }
@@ -80,14 +79,7 @@ exports.createTutela = async (req, res) => {
       !temaEspecifico ||
       !abogado
     ) {
-      console.log("Campos faltantes para Tutela:", {
-        radicado,
-        accionante,
-        despacho,
-        convocatoria,
-        temaEspecifico,
-        abogado,
-      });
+
       return res.status(400).json({
         message:
           "Los campos radicado, accionante, despacho, convocatoria, temaEspecifico y abogado son obligatorios para Tutela",

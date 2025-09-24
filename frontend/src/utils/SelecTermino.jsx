@@ -6,7 +6,6 @@ function SelectTermino({ value, onChange, className = "", required }) {
       value={value || ""}
       onChange={(e) => {
         const selectedValue = e.target.value;
-        console.log('Valor seleccionado en SelectTermino:', selectedValue); // Depuración
         onChange(selectedValue);
       }}
       className={`tabs_termino ${className}`}

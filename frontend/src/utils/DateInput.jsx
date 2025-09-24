@@ -4,7 +4,7 @@ function DateInput({
   value,
   onChange,
   readOnly = false,
-  label = "Fecha",
+  label = "",
   className = "",
   placeholder = "",
   name,

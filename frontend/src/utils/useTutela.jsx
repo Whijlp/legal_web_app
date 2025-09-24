@@ -17,9 +17,7 @@ export function useTutela() {
 
     try {
       
-      console.log("Payload antes de JSON.stringify:", datos);
       const body = JSON.stringify(datos);
-      console.log("Cuerpo de la solicitud (JSON):", body);
 
       const token = user?.token;
       if (!token) throw new Error("No hay token de autenticación");

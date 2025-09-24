@@ -5,7 +5,6 @@ import FalloInstancia from "./FalloInstancia";
 function TabFallos() {
   const { datosTabs, handleGuardarTab } = useContext(TabsContext);
 
-  console.log("Datos de falloPrimera:", datosTabs.fallos?.falloPrimera);
 
   return (
     <div>

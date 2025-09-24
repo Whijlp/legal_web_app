@@ -50,7 +50,6 @@ function TabGeneral({ tutelaId }) {
     };
     setFormData(nuevosDatos);
     handleGuardarTab("general", nuevosDatos.general);
-    console.log('Sincronizando formData:', nuevosDatos); // Depuración
   }, [fechaIngreso, termino, fechaVencimiento]);
 
   // Actualizar formData cuando cambien otros campos
@@ -62,7 +61,6 @@ function TabGeneral({ tutelaId }) {
         ...datosTabs?.general, // Mantener sincronización con datosTabs
       },
     }));
-    console.log('Actualizando formData desde datosTabs:', datosTabs); // Depuración
   }, [datosTabs]);
 
   // Calcular fechaVencimiento cuando cambian fechaIngreso o termino
@@ -70,7 +68,6 @@ function TabGeneral({ tutelaId }) {
     if (fechaIngreso && termino) {
       try {
         const vencimiento = sumarDiasHabiles(fechaIngreso, parseInt(termino));
-        console.log('Fecha vencimiento calculada:', vencimiento); // Depuración
         setFechaVencimiento(vencimiento);
       } catch (error) {
         console.error("Error en sumarDiasHabiles:", error);
@@ -91,26 +88,23 @@ function TabGeneral({ tutelaId }) {
     };
     setFormData(nuevosDatos);
     handleGuardarTab("general", nuevosDatos.general);
-    console.log(`Input cambiado: ${name} = ${value}`); // Depuración
+    
   };
 
   const handleDateChange = (value) => {
-    console.log('Fecha seleccionada:', value); // Depuración
+    
     setFechaIngreso(value);
   };
 
   const handleTerminoChange = (value) => {
-    console.log('Término seleccionado:', value); // Depuración
+
     setTermino(value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Depurar estados antes de validar
-    console.log("Estados antes de validar:", { fechaIngreso, termino, fechaVencimiento, formData });
-
-    // Validar campos requeridos
+    //
     if (!fechaIngreso) {
       setErrorMessage("La fecha de ingreso es obligatoria");
       setShowPopup(true);
@@ -167,18 +161,17 @@ function TabGeneral({ tutelaId }) {
     }
 
     const dataToSend = {
-      ...formData.general, // Incluir todos los campos de general
-      fechaIngreso, // Usar el estado local para consistencia
-      termino, // Usar el estado local para consistencia
-      fechaVencimiento, // Usar el estado local para consistencia
-      fallo_1_instancia: formData.fallos?.fallo_1_instancia || null, // Incluir datos de fallos
-      fallo_2_instancia: formData.fallos?.fallo_2_instancia || null, // Incluir datos de fallos
-      apelacion: formData.apelacion || null, // Incluir datos de apelacion
-      incidentesDesacato: formData.incidentes || null, // Incluir datos de incidentes
-      otros: formData.otros || null, // Incluir datos de otros
+      ...formData.general, 
+      fechaIngreso, 
+      termino, 
+      fechaVencimiento, 
+      fallo_1_instancia: formData.fallos?.fallo_1_instancia || null, 
+      fallo_2_instancia: formData.fallos?.fallo_2_instancia || null, 
+      apelacion: formData.apelacion || null, 
+      incidentesDesacato: formData.incidentes || null, 
+      otros: formData.otros || null, 
     }
 
-    console.log("📌 Enviando formulario:", dataToSend);
 
     try {
       await guardarTutela(dataToSend, tutelaId);
