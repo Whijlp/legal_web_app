@@ -1,12 +1,37 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación Preator – Gestión de Tutelas
 
-Currently, two official plugins are available:
+Descripción
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Esta aplicación web está diseñada para la gestión de información judicial mediante una interfaz clara y organizada. Permite a los usuarios acceder a diferentes módulos y pestañas para registrar, consultar y actualizar datos, todo sincronizado con una base de datos en MongoDB.
 
-## Expanding the ESLint configuration
+Incluye funcionalidades como:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Landing Page con noticias destacadas.
+Login seguro con manejo de roles 
+Registro de tutelas con campos estructurados.
+Manejo de roles diferenciados: Administrador, Notificador y Consultor.
+Cálculo automático de fechas de vencimiento con base en días hábiles.
+Sincronización de la información entre pestañas mediante un contexto global (TabsContext).
+Guardado de tutelas en una base de datos MongoDB a través de un backend en Node.js/Express.
+Validaciones con Yup para garantizar la integridad de los datos.
+Autenticación con protección de rutas y permisos según rol.
+
+Tecnologías utilizadas
+Frontend
+
+React (con hooks useState, useEffect, useContext)
+JSX, JS,  HTML, CSS 
+React Context API para manejo global del estado de las pestañas
+
+Backend
+
+Node.js + Express → Servidor API REST
+Mongoose → Modelado y conexión con MongoDB
+JWT (JSON Web Token) → Autenticación y autorización por roles
+Middlewares personalizados → Validación de permisos (permit), autenticación (auth), validación de datos con Yup
+
+Base de Datos
+MongoDB (con colecciones para tutelas, fallos, apelaciones, incidentes, etc.)
+
+https://github.com/Whijlp/legal_web_app
